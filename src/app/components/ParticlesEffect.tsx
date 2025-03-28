@@ -6,7 +6,6 @@ const ParticlesEffect = () => {
   const [scriptLoaded, setScriptLoaded] = useState(false);
 
   useEffect(() => {
-    // Initialize particlesJS only after the script has loaded
     if (scriptLoaded && typeof window !== "undefined" && window.particlesJS) {
       window.particlesJS("bg", {
         particles: {
@@ -123,14 +122,11 @@ const ParticlesEffect = () => {
 
   return (
     <>
-      {/* Load the particles.min.js script asynchronously */}
       <Script
         src="/particles.min.js"
-        strategy="afterInteractive" // Ensure it's loaded after the page is interactive
-        onLoad={() => setScriptLoaded(true)} // Set state to true when script is loaded
+        strategy="afterInteractive"
+        onLoad={() => setScriptLoaded(true)}
       />
-
-      {/* Element where particles effect will be applied */}
       <div
         id="bg"
         style={{ position: "absolute", width: "100%", height: "100%" }}
