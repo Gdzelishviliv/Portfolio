@@ -1,0 +1,142 @@
+"use client";
+import { useEffect, useState } from "react";
+import Script from "next/script";
+
+const ParticlesEffect = () => {
+  const [scriptLoaded, setScriptLoaded] = useState(false);
+
+  useEffect(() => {
+    // Initialize particlesJS only after the script has loaded
+    if (scriptLoaded && typeof window !== "undefined" && window.particlesJS) {
+      window.particlesJS("bg", {
+        particles: {
+          number: {
+            value: 90,
+            density: {
+              enable: true,
+              value_area: 315,
+            },
+          },
+          color: {
+            value: "#ffffff",
+          },
+          shape: {
+            type: "circle",
+            stroke: {
+              width: 0,
+              color: "#000000",
+            },
+            polygon: {
+              nb_sides: 5,
+            },
+            image: {
+              src: "img/github.svg",
+              width: 100,
+              height: 100,
+            },
+          },
+          opacity: {
+            value: 0.5,
+            random: true,
+            anim: {
+              enable: true,
+              speed: 0.1,
+              opacity_min: 0.2,
+              sync: false,
+            },
+          },
+          size: {
+            value: 1.5,
+            random: true,
+            anim: {
+              enable: true,
+              speed: 1,
+              size_min: 0.5,
+              sync: false,
+            },
+          },
+          line_linked: {
+            enable: false,
+            distance: 150,
+            color: "#ffffff",
+            opacity: 0.4,
+            width: 1,
+          },
+          move: {
+            enable: true,
+            speed: 0.2,
+            direction: "none",
+            random: true,
+            straight: false,
+            out_mode: "out",
+            bounce: false,
+            attract: {
+              enable: false,
+              rotateX: 600,
+              rotateY: 1200,
+            },
+          },
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: {
+              enable: true,
+              mode: "grab",
+            },
+            onclick: {
+              enable: true,
+              mode: "push",
+            },
+            resize: true,
+          },
+          modes: {
+            grab: {
+              distance: 140,
+              line_linked: {
+                opacity: 1,
+              },
+            },
+            bubble: {
+              distance: 400,
+              size: 40,
+              duration: 2,
+              opacity: 8,
+              speed: 3,
+            },
+            repulse: {
+              distance: 200,
+              duration: 0.4,
+            },
+            push: {
+              particles_nb: 4,
+            },
+            remove: {
+              particles_nb: 2,
+            },
+          },
+        },
+        retina_detect: true,
+      });
+    }
+  }, [scriptLoaded]);
+
+  return (
+    <>
+      {/* Load the particles.min.js script asynchronously */}
+      <Script
+        src="/particles.min.js"
+        strategy="afterInteractive" // Ensure it's loaded after the page is interactive
+        onLoad={() => setScriptLoaded(true)} // Set state to true when script is loaded
+      />
+
+      {/* Element where particles effect will be applied */}
+      <div
+        id="bg"
+        style={{ position: "absolute", width: "100%", height: "100%" }}
+      />
+    </>
+  );
+};
+
+export default ParticlesEffect;
