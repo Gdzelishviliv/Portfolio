@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import ParticlesEffect from "./components/Custom/ParticlesEffect";
+import Header from "./components/organisms/Header";
 
 export const metadata: Metadata = {
-  title: "Portfolio"
+  title: "Portfolio",
 };
 
 export default function RootLayout({
@@ -12,13 +13,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-   <>
-   <ParticlesEffect />
-   <html lang="en">
-    <body>
-      {children}
-    </body>
-   </html>
-   </>
+    <>
+      <ParticlesEffect />
+      <html lang="en">
+        <body className="max-w-[1920px]">
+          <Header />
+          {children}
+        </body>
+      </html>
+    </>
   );
 }

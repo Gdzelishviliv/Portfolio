@@ -12,20 +12,11 @@ body {
   height: 100vh;
 }
 
-h1 {
-  color: white;
-  font-size: 72px;
-  text-transform: uppercase;
-  text-align: center;
-  padding-top: 45vh;
-  z-index: 9999;
-}
-
-#bg{
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: -1;
+#bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
 }
