@@ -1,11 +1,7 @@
+import { BurgerLineProps } from "@/app/types/button";
 import { motion } from "framer-motion";
 
-interface BurgerLineProps {
-  showOptions: boolean;
-  position: "top" | "middle" | "bottom";
-}
-
-const BurgerLine:React.FC<BurgerLineProps> = ({ showOptions, position }) => {
+const BurgerLine: React.FC<BurgerLineProps> = ({ showOptions, position }) => {
   return (
     <motion.div
       className="w-[20px] h-[2px] bg-white rounded-[2px]"
