@@ -45,7 +45,7 @@ const ParticlesEffect = () => {
             },
           },
           size: {
-            value: 1.5,
+            value: 1.3,
             random: true,
             anim: {
               enable: true,

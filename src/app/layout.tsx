@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import ParticlesEffect from "./components/ParticlesEffect";
+import ParticlesEffect from "./components/Custom/ParticlesEffect";
 
 export const metadata: Metadata = {
   title: "Portfolio"
