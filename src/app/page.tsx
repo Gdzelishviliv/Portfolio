@@ -1,6 +1,7 @@
 "use client";
 
 import Head from "next/head";
+import About from "./components/About";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
           content="This is my portfolio website, showcasing my latest web development and design work. Learn more about my skills and projects!"
         />
       </Head>
+      <About/>
     </>
   );
 }

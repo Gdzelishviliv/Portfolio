@@ -13,12 +13,18 @@ const Logo = () => {
   return (
     <Link href="/#">
       <motion.svg
-        aria-label="website logo"
+        aria-label="Website Logo"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="50 30 40 40"
         width="50"
         height="50"
+        role="img"
+        aria-labelledby="logoTitle"
       >
+        <title id="logoTitle">SkillWill Logo</title>
+        <desc id="logoDesc">
+          An animated logo of SkillWill, rotating with a path design
+        </desc>
         <motion.path
           d="M55,50 L70,40 L70,60 Z"
           stroke="white"
