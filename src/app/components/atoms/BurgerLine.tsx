@@ -1,5 +1,6 @@
 import { BurgerLineProps } from "@/app/types/button";
 import { motion } from "framer-motion";
+import { memo } from "react";
 
 const BurgerLine: React.FC<BurgerLineProps> = ({ showOptions, position }) => {
   return (
@@ -33,4 +34,4 @@ const BurgerLine: React.FC<BurgerLineProps> = ({ showOptions, position }) => {
   );
 };
 
-export default BurgerLine;
+export default memo(BurgerLine);

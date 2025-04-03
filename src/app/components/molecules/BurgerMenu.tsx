@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { motion } from "framer-motion";
 import BurgerLine from "../atoms/BurgerLine";
 
@@ -12,6 +12,7 @@ const BurgerMenu = () => {
   return (
     <>
       <motion.button
+        aria-label="Toggle menu"
         onClick={toggleOptions}
         initial={{ rotate: 0 }}
         transition={{ duration: 0.3 }}
@@ -33,4 +34,4 @@ const BurgerMenu = () => {
   );
 };
 
-export default BurgerMenu;
+export default memo(BurgerMenu);

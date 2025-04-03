@@ -7,15 +7,13 @@ const Logo = () => {
   const [rotate, setRotate] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setRotate(true);
-    }, 1000);
-    return () => clearTimeout(timer);
+    setRotate(true);
   }, []);
 
   return (
     <Link href="/#">
       <motion.svg
+        aria-label="website logo"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="50 30 40 40"
         width="50"
