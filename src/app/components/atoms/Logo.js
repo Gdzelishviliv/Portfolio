@@ -38,7 +38,7 @@ const Logo = () => {
           }}
           transition={{
             duration: 1,
-            delay: 0.1,
+            delay: 1.2,
             rotate: {
               repeat: Infinity,
               duration: 20,
