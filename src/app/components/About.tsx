@@ -14,7 +14,7 @@ const About = () => {
             Ivane
             <br /> Gdzelishvili
           </h2>
-          <p className="text-white text-[14px] mt-[20px]">
+          <p className="text-white text-[14px] mt-[20px] min-w-[200px] max-w-[220px]">
             a passionate Full Stack Web Developer with 2 years of experience in
             building dynamic and scalable web applications. I specialize in both
             front-end and back-end development, working with modern technologies
