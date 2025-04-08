@@ -129,7 +129,7 @@ const ParticlesEffect = () => {
       />
       <div
         id="bg"
-        style={{ position: "absolute", width: "100%", height: "100%" }}
+        style={{ position: "absolute", width: "100%", height: "100vh" }}
       />
     </>
   );
