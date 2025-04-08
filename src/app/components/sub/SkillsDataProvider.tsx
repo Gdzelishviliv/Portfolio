@@ -34,21 +34,21 @@ const SkillsDataProvider = ({ src, width, height, index }: SkillsProps) => {
         opacity:1,
         transition:{
           type:"spring",
-          stiffness:100,
-          damping:10,
-          duration:0.5,
+          stiffness:120,
+          damping:20,
+          duration:0.6,
         }
       }}
       whileHover={{
         scale:1.1,
         rotate:5,
         transition:{
-          duration:0.3,
+          duration:0.4,
           ease:"easeInOut",
         }
       }}
     >
-      <Image src={src} width={width} height={height} alt="skills image" />
+      <Image src={src} width={width} height={height} alt="skills image" style={{objectFit:"cover",width:"auto",height:"auto",maxWidth:"60px",maxHeight:"60px"}} />
     </motion.div>
   );
 };
