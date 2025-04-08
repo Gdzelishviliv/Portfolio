@@ -1,7 +1,7 @@
 import React from "react";
-import ProfileImg from "../../../public/assets/profile.jpg";
+import ProfileImg from "../../../../public/assets/profile.jpg";
 import Image from "next/image";
-import Typewriter from "./atoms/Typewriter";
+import Typewriter from "../atoms/Typewriter";
 
 const About = () => {
   return (
@@ -15,7 +15,7 @@ const About = () => {
             Ivane
             <br /> Gdzelishvili
           </h2>
-          <Typewriter/>
+          <Typewriter />
           <p className="text-white text-[14px] mt-[15px] min-w-[200px] max-w-[220px]">
             a passionate Full Stack Web Developer with 2 years of experience in
             building dynamic and scalable web applications. I specialize in both
