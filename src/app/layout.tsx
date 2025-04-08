@@ -29,7 +29,7 @@ export default function RootLayout({
       </Head>
       <ParticlesEffect />
       <html lang="en">
-        <body className="max-w-[1920px] m-auto bg-black h-[100vh] p-0">
+        <body className="max-w-[1920px] m-auto bg-black h-[100vh] p-0 relative">
           <Header />
           <Effect/>
           {children}

@@ -62,6 +62,7 @@ const BurgerMenu = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
+            style={{ zIndex: 9999 }}
             className="absolute top-[50px] right-0 rounded-md p-4 backdrop-blur-3xl bg-[rgba(0,0,0,0.3)] lg:w-[200px] w-[150px] flex flex-col gap-2 z-50"
           >
             <ul>

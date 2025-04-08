@@ -7,7 +7,7 @@ const About = () => {
   return (
     <>
       <div className="mx-[16px] mt-[25px] relative">
-        <div className="flex flex-col">
+        <div className="flex flex-col relative">
           <h1 className="text-white text-[24px] z-[-1]">
             Hi I<span className="gradient-text">’</span>m
           </h1>
@@ -23,7 +23,7 @@ const About = () => {
             to create seamless, user-friendly, and performance-driven solutions.
           </p>
         </div>
-        <div className="w-fit absolute right-0 top-[-30px] z-[-1]">
+        <div className="w-fit absolute right-0 top-[-30px] z-[0]">
           <Image
             className="rounded-4xl "
             src={ProfileImg}

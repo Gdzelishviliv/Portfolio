@@ -26,6 +26,7 @@ const Header = () => {
           ? "backdrop-blur-md bg-[rgba(0,0,0,0.6)]"
           : "backdrop-blur-none bg-transparent"
       }`}
+      style={{ zIndex: 9999 }}
     >
       <Logo />
       <BurgerMenu />
