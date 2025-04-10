@@ -60,62 +60,55 @@ const BurgerMenu = () => {
         {showOptions && (
           <motion.div
             ref={menuRef}
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            exit={{ opacity: 0, y: -30 }}
+            transition={{ duration: 0.3, ease: [0.25, 0.8, 0.25, 1] }}
             style={{
               zIndex: 9999,
-              backdropFilter: "blur(5px)",
-              WebkitBackdropFilter: "blur(5px)", 
-              backgroundColor: "rgba(255, 255, 255, 0.3)",
+              backdropFilter: "blur(10px)",
+              WebkitBackdropFilter: "blur(10px)",
+              background:
+                "linear-gradient(135deg, rgba(0,0,0,0.8), rgba(50,50,50,0.8))",
+              border: "1px solid rgba(255, 255, 255, 0.2)",
             }}
-            className="absolute top-[50px] right-0 rounded-md p-4 lg:w-[200px] w-[150px] flex flex-col gap-2"
+            className="absolute top-[50px] right-0 rounded-lg p-6 lg:w-[220px] w-[170px] flex flex-col gap-4 shadow-lg"
           >
-            <ul>
-              <li>
-                <Link
-                  href="#about"
-                  onClick={toggleOptions}
-                  to="about"
-                  smooth={true}
-                  duration={500}
-                  className="text-lg text-white hover:text-gray-300"
+            <motion.ul
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: {
+                    staggerChildren: 0.1,
+                  },
+                },
+              }}
+            >
+              {["about", "skills", "projects", "contact"].map((section) => (
+                <motion.li
+                  key={section}
+                  variants={{
+                    hidden: { opacity: 0 },
+                    visible: { opacity: 1 },
+                  }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="projects"
-                  href="#projects"
-                  onClick={toggleOptions}
-                  className="text-lg text-white hover:text-gray-300"
-                >
-                  Projects
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="contact"
-                  href="#contact"
-                  onClick={toggleOptions}
-                  className="text-lg text-white hover:text-gray-300"
-                >
-                  Contact Me
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="skills"
-                  href="#skills"
-                  onClick={toggleOptions}
-                  className="text-lg text-white hover:text-gray-300"
-                >
-                  Skills
-                </Link>
-              </li>
-            </ul>
+                  <Link
+                    onClick={toggleOptions}
+                    to={section}
+                    smooth={true}
+                    duration={300}
+                    className="text-lg text-white hover:text-gray-300 transition-colors duration-200"
+                  >
+                    {section.charAt(0).toUpperCase() + section.slice(1)}
+                  </Link>
+                </motion.li>
+              ))}
+            </motion.ul>
           </motion.div>
         )}
       </AnimatePresence>
