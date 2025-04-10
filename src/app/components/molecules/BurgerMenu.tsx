@@ -2,7 +2,7 @@
 import { memo, useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import BurgerLine from "../atoms/BurgerLine";
-import Link from "next/link";
+import { Link } from "react-scroll";
 
 const BurgerMenu = () => {
   const [showOptions, setShowOptions] = useState(false);
@@ -15,8 +15,10 @@ const BurgerMenu = () => {
 
   const handleClickOutside = (event: MouseEvent) => {
     if (
-      menuRef.current && !menuRef.current.contains(event.target as Node) &&
-      buttonRef.current && !buttonRef.current.contains(event.target as Node)
+      menuRef.current &&
+      !menuRef.current.contains(event.target as Node) &&
+      buttonRef.current &&
+      !buttonRef.current.contains(event.target as Node)
     ) {
       setShowOptions(false);
     }
@@ -62,7 +64,11 @@ const BurgerMenu = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            style={{ zIndex: 9999 }}
+            style={{
+              zIndex: 9999,
+              backdropFilter: "blur(5px)",
+              WebkitBackdropFilter: "blur(5px)", 
+            }}
             className="absolute top-[50px] right-0 rounded-md p-4 backdrop-blur-3xl bg-[rgba(0,0,0,0.3)] lg:w-[200px] w-[150px] flex flex-col gap-2 z-50"
           >
             <ul>
@@ -70,6 +76,9 @@ const BurgerMenu = () => {
                 <Link
                   href="#about"
                   onClick={toggleOptions}
+                  to="about"
+                  smooth={true}
+                  duration={500}
                   className="text-lg text-white hover:text-gray-300"
                 >
                   About
@@ -77,6 +86,7 @@ const BurgerMenu = () => {
               </li>
               <li>
                 <Link
+                  to="projects"
                   href="#projects"
                   onClick={toggleOptions}
                   className="text-lg text-white hover:text-gray-300"
@@ -86,6 +96,7 @@ const BurgerMenu = () => {
               </li>
               <li>
                 <Link
+                  to="contact"
                   href="#contact"
                   onClick={toggleOptions}
                   className="text-lg text-white hover:text-gray-300"
@@ -95,6 +106,7 @@ const BurgerMenu = () => {
               </li>
               <li>
                 <Link
+                  to="skills"
                   href="#skills"
                   onClick={toggleOptions}
                   className="text-lg text-white hover:text-gray-300"

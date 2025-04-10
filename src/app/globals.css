@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 #bg {
   position: absolute;
   top: 0;
@@ -12,6 +16,7 @@
   right: 0;
   z-index: -1;
 }
+
 .gradient-text {
   font-weight: bold;
   background: linear-gradient(45deg, #ff7e5f, #feb47b, #6a11cb, #2575fc);

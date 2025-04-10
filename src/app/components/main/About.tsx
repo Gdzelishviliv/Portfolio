@@ -6,7 +6,7 @@ import Typewriter from "../atoms/Typewriter";
 const About = () => {
   return (
     <>
-      <div className="mx-[16px] mt-[25px] relative">
+      <section id="about" className="mx-[16px] mt-[25px] relative">
         <div className="flex flex-col relative">
           <h1 className="text-white text-[24px]">
             Hi I<span className="gradient-text">’</span>m
@@ -32,7 +32,7 @@ const About = () => {
             height={100}
           />
         </div>
-      </div>
+      </section>
     </>
   );
 };

@@ -20,17 +20,24 @@ const Header = () => {
   }, []);
 
   return (
-    <div
-      className={`flex justify-between sticky inset-x-0 mx-auto w-full max-w-[1920px] px-4 items-center pt-2 transition-all duration-300 ease-in-out ${
-        isScrolled
-          ? "backdrop-blur-md bg-[rgba(0,0,0,0.6)]"
-          : "backdrop-blur-none bg-transparent"
-      }`}
-      style={{ zIndex: 9999 }}
-    >
-      <Logo />
-      <BurgerMenu />
-    </div>
+    <>
+      <div
+        className={`fixed top-0 left-0 flex justify-between mx-auto w-full max-w-[1920px] px-4 items-center transition-all duration-300 ease-in-out ${
+          isScrolled
+            ? "backdrop-blur-md bg-[rgba(255, 255, 255, 0.3]"
+            : "backdrop-blur-none bg-transparent"
+        }`}
+        style={{
+          zIndex: 9999,
+          backdropFilter: isScrolled ? "blur(5px)" : "none",
+          WebkitBackdropFilter: isScrolled ? "blur(5px)" : "none",
+        }}
+      >
+        <Logo />
+        <BurgerMenu />
+      </div>
+      <div style={{height:"50px"}}></div>
+    </>
   );
 };
 
