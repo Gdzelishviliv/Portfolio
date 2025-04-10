@@ -11,7 +11,7 @@ const Logo = () => {
   }, []);
 
   return (
-    <Link to="home" smooth={true} duration={350} >
+    <Link to="home" smooth={true} duration={350}  className="cursor-pointer">
       <motion.svg
         aria-label="Website Logo"
         xmlns="http://www.w3.org/2000/svg"
