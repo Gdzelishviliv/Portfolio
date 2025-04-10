@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import Link from "next/link";
+import {Link} from "react-scroll"
 import { useState, useEffect } from "react";
 
 const Logo = () => {
@@ -11,7 +11,7 @@ const Logo = () => {
   }, []);
 
   return (
-    <Link href="/#">
+    <Link to="home" smooth={true} duration={350} >
       <motion.svg
         aria-label="Website Logo"
         xmlns="http://www.w3.org/2000/svg"

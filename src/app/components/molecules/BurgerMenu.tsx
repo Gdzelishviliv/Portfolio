@@ -68,8 +68,9 @@ const BurgerMenu = () => {
               zIndex: 9999,
               backdropFilter: "blur(5px)",
               WebkitBackdropFilter: "blur(5px)", 
+              backgroundColor: "rgba(255, 255, 255, 0.3)",
             }}
-            className="absolute top-[50px] right-0 rounded-md p-4 backdrop-blur-3xl bg-[rgba(0,0,0,0.3)] lg:w-[200px] w-[150px] flex flex-col gap-2 z-50"
+            className="absolute top-[50px] right-0 rounded-md p-4 lg:w-[200px] w-[150px] flex flex-col gap-2"
           >
             <ul>
               <li>
