@@ -23,13 +23,12 @@ const About = () => {
             to create seamless, user-friendly, and performance-driven solutions.
           </p>
         </div>
-        <div className="w-fit absolute right-0 top-[-30px] z-[-1]">
+        <div className="w-[150px] absolute right-0 top-[0px] z-[-1] ">
           <Image
-            className="rounded-4xl "
+            priority
+            className="rounded-4xl"
             src={ProfileImg}
             alt="Profile Image"
-            width={120}
-            height={100}
           />
         </div>
       </section>
