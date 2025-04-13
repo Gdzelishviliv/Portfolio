@@ -9,7 +9,7 @@ const Skills = () => {
       id="skills"
       style={{ transform: "scale(0.9)" }}
     > 
-    <h1 className="text-white font-bold text-2xl">Skills & Tech-Stack</h1>
+    <h1 className="text-white font-bold text-2xl">Skills <span className="gradient-text">&</span> Tech-Stack</h1>
       <div className="flex flex-row justify-around flex-wrap mt-4 gap-5 items-center">
         {Frontend_skill.map((image, index) => (
           <SkillsDataProvider
