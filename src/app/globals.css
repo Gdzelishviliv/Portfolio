@@ -1,13 +1,10 @@
 @import "tailwindcss";
-
 * {
   box-sizing: border-box;
 }
-
 html {
   scroll-behavior: smooth;
 }
-
 #bg {
   position: absolute;
   top: 0;
@@ -16,7 +13,6 @@ html {
   right: 0;
   z-index: -1;
 }
-
 .gradient-text {
   font-weight: bold;
   background: linear-gradient(45deg, #ff7e5f, #feb47b, #6a11cb, #2575fc);
@@ -26,7 +22,6 @@ html {
   -webkit-background-clip: text;
   animation: gradient-animation 10s ease infinite;
 }
-
 @keyframes gradient-animation {
   0% {
     background-position: 0% 50%;
@@ -36,5 +31,22 @@ html {
   }
   100% {
     background-position: 0% 50%;
+  }
+}
+@keyframes wave {
+  0% {
+    clip-path: inset(0 100% 0 0);
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  50% {
+    clip-path: inset(0 50% 0 0);
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    transform: scale(1);
+    opacity: 1;
   }
 }
