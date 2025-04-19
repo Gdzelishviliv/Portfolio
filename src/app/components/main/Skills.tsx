@@ -6,12 +6,11 @@ import { motion } from "framer-motion";
 const Skills = () => {
   return (
     <section
-      className="flex flex-col items-center gap-3"
+      className="flex flex-col items-center gap-3 mx-[16px] mt-2.5"
       id="skills"
-      style={{ transform: "scale(0.9)" }}
     >
       <motion.h1
-        className="text-white font-bold text-3xl relative overflow-hidden"
+        className="text-white font-bold text-2xl relative overflow-hidden"
         initial={{ opacity: 0, }}
         whileInView={{
           opacity: 1,

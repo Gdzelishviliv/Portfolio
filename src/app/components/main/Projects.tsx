@@ -22,17 +22,25 @@ const Projects = () => {
     },
   };
   return (
-    <section
-      className="flex flex-col items-center mt-2.5"
-      id="projects"
-    >
+    <section className="flex flex-col items-center mt-2.5" id="projects">
       <motion.h1
-        className="text-white font-bold text-2xl"
-        variants={container}
-        initial="hidden"
-        animate="visible"
-        whileInView="visible"
+        className="text-white font-bold text-2xl relative overflow-hidden"
+        initial={{ opacity: 0 }}
+        whileInView={{
+          opacity: 1,
+          clipPath: "inset(0 0 0 0)",
+          scale: 1,
+        }}
+        exit={{
+          opacity: 0,
+          clipPath: "inset(0 100% 0 0)",
+          scale: 0.8,
+        }}
         viewport={{ once: false, amount: 0.2 }}
+        style={{
+          animation: "wave 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards",
+          animationDelay: "0.8s",
+        }}
       >
         Projects
       </motion.h1>
