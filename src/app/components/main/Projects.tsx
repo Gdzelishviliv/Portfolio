@@ -56,22 +56,24 @@ const Projects = () => {
       >
         {projects.map((project, index) => (
           <SwiperSlide key={index}>
-            <div
-              className="text-center text-white"
-              style={{
-                backgroundImage: `url(${project.backgroundImage})`,
-                backgroundSize: "240px",
-                backgroundPosition: "top",
-                backgroundRepeat: "no-repeat",
-                minHeight: "100%",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-              }}
-            >
-              <h2 className="font-bold text-lg mt-8">{project.title}</h2>
-              <p className="text-sm">{project.description}</p>
-            </div>
+            <a href={project.href} target="_blank" rel="noopener noreferrer">
+              <div
+                className="text-center text-white"
+                style={{
+                  backgroundImage: `url(${project.backgroundImage})`,
+                  backgroundSize: "240px",
+                  backgroundPosition: "top",
+                  backgroundRepeat: "no-repeat",
+                  minHeight: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                }}
+              >
+                <h2 className="font-bold text-lg mt-8">{project.title}</h2>
+                <p className="text-sm">{project.description}</p>
+              </div>
+            </a>
           </SwiperSlide>
         ))}
       </Swiper>
