@@ -1,10 +1,27 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCards, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/effect-cards";
+import { ProjectsProps } from "@/app/types/projects";
 
 const Projects = () => {
+  const [projects, setProjects] = useState<ProjectsProps[]>([]);
+
+  useEffect(() => {
+    fetch("/Projects.json")
+      .then((response) => response.json())
+      .then((data) => setProjects(data))
+      .catch((error) => console.error("Error fetching projects:", error));
+  }, []);
+
   return (
-    <section className="flex flex-col items-center mt-2.5" id="projects">
+    <section
+      className="flex flex-col items-center mt-5 mb-5 overflow-hidden"
+      id="projects"
+    >
       <motion.h1
         className="text-white font-bold text-2xl relative overflow-hidden"
         initial={{ opacity: 0 }}
@@ -26,12 +43,38 @@ const Projects = () => {
       >
         Projects
       </motion.h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore harum ea
-        repellat est nulla dolorem modi repellendus deserunt fugiat, inventore,
-        doloribus dicta labore maiores cumque corrupti cupiditate sit
-        accusantium magni.
-      </p>
+      <Swiper
+        effect={"cards"}
+        grabCursor={true}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        }}
+        modules={[EffectCards, Autoplay]}
+        className="mySwiper mt-4"
+      >
+        {projects.map((project, index) => (
+          <SwiperSlide key={index}>
+            <div
+              className="text-center text-white"
+              style={{
+                backgroundImage: `url(${project.backgroundImage})`,
+                backgroundSize: "240px",
+                backgroundPosition: "top",
+                backgroundRepeat: "no-repeat",
+                minHeight: "100%",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+              }}
+            >
+              <h2 className="font-bold text-lg mt-8">{project.title}</h2>
+              <p className="text-sm">{project.description}</p>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </section>
   );
 };
