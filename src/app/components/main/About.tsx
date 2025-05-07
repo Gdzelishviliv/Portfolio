@@ -6,7 +6,7 @@ import Typewriter from "../atoms/Typewriter";
 const About = () => {
   return (
     <>
-      <section id="about" className="mx-4 mt-6 relative flex flex-col gap-5 md:mx-8 md:mt-12 md:flex-row md:gap-12 lg:mx-24 lg:mt-24 lg:gap-16">
+      <section id="about" className="mx-4 mt-6 relative flex flex-col gap-5 md:mx-8 md:mt-12 md:flex-row md:gap-12 lg:mx-24 lg:mt-16 lg:gap-16">
       <div className="flex flex-col relative">
         <h1 className="text-white text-lg sm:text-xl md:text-2xl lg:text-3xl">
         Hi I<span className="gradient-text">’</span>m
@@ -16,7 +16,7 @@ const About = () => {
         <br /> Gdzelishvili
         </h2>
         <Typewriter />
-        <p className="text-white text-sm sm:text-base md:text-lg mt-4 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
+        <p className="text-white text-sm sm:text-base md:text-lg mt-4 max-w-[220px] sm:max-w-sm md:max-w-md lg:max-w-lg">
         a passionate Full Stack Web Developer with 2 years of experience in
         building dynamic and scalable web applications. I specialize in both
         front-end and back-end development, working with modern technologies
@@ -24,7 +24,7 @@ const About = () => {
         </p>
       </div>
       <div className="absolute right-0 top-[0px] flex justify-center items-center md:justify-end md:items-start">
-        <div className="w-24 sm:w-32 md:w-40 lg:w-48 xl:w-56 z-10">
+        <div className="w-[150px] sm:w-32 md:w-40 lg:w-48 xl:w-56 z-10">
         <Image
           priority
           className="rounded-4xl object-cover"

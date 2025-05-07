@@ -22,7 +22,7 @@ const Header = () => {
   return (
     <>
       <div
-        className={`fixed top-0 flex justify-between mx-auto w-full max-w-[1920px] px-4 items-center transition-all duration-300 ease-in-out ${
+        className={`fixed top-0 flex justify-between mx-auto w-full max-w-[1920px] px-4 md:px-8 lg:px-24 items-center transition-all duration-300 ease-in-out ${
           isScrolled
             ? "backdrop-blur-md bg-[rgba(255, 255, 255, 0.3)]"
             : "backdrop-blur-none bg-transparent"
