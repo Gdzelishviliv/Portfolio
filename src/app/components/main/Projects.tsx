@@ -1,11 +1,18 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { Rancho } from "next/font/google";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCards, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-cards";
 import { ProjectsProps } from "@/app/types/projects";
+
+const rancho = Rancho({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-rancho",
+})
 
 const Projects = () => {
   const [projects, setProjects] = useState<ProjectsProps[]>([]);
@@ -19,11 +26,11 @@ const Projects = () => {
 
   return (
     <section
-      className="flex flex-col items-center mt-5 mb-5 overflow-hidden"
+      className={`${rancho.variable} flex flex-col items-center mt-5 mb-5 overflow-hidden`}
       id="projects"
     >
       <motion.h1
-        className="text-white font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl relative overflow-hidden"
+        className="text-white font-main font-bold tracking-wider text-lg sm:text-xl md:text-2xl lg:text-3xl relative overflow-hidden"
         initial={{ opacity: 0 }}
         whileInView={{
           opacity: 1,

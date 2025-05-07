@@ -1,4 +1,8 @@
 @import "tailwindcss";
+@theme inline {
+  --font-main: var(--font-rancho);
+  --font-secondary: var(--font-vt323);
+}
 * {
   box-sizing: border-box;
 }

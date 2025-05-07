@@ -2,15 +2,22 @@ import React from "react";
 import { Backend_skill, Frontend_skill, Full_stack } from "../../constants";
 import SkillsDataProvider from "../sub/SkillsDataProvider";
 import { motion } from "framer-motion";
+import { Rancho } from "next/font/google";
+
+const rancho = Rancho({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-rancho",
+});
 
 const Skills = () => {
   return (
     <section
-      className="flex flex-col items-center gap-3 mx-[16px] mt-2.5"
+      className={`${rancho.variable} flex flex-col items-center gap-3 mx-[16px] mt-2.5`}
       id="skills"
     >
       <motion.h1
-        className="text-white font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl relative overflow-hidden"
+        className="text-white font-main font-bold tracking-wider text-lg sm:text-xl md:text-2xl lg:text-3xl relative overflow-hidden"
         initial={{ opacity: 0, }}
         whileInView={{
           opacity: 1,
