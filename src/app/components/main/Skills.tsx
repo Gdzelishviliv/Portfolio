@@ -10,7 +10,7 @@ const Skills = () => {
       id="skills"
     >
       <motion.h1
-        className="text-white font-bold text-2xl relative overflow-hidden"
+        className="text-white font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl relative overflow-hidden"
         initial={{ opacity: 0, }}
         whileInView={{
           opacity: 1,

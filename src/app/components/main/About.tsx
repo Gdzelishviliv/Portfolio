@@ -24,7 +24,7 @@ const About = () => {
         </p>
       </div>
       <div className="absolute right-0 top-[0px] flex justify-center items-center md:justify-end md:items-start">
-        <div className="w-[150px] sm:w-32 md:w-40 lg:w-48 xl:w-56 z-10">
+        <div className="w-[150px] sm:w-32 md:w-40 z-10">
         <Image
           priority
           className="rounded-4xl object-cover"
