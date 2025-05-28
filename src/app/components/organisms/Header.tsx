@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import BurgerMenu from "../molecules/BurgerMenu";
 import Logo from "../atoms/Logo";
 import { DesctopHeader } from "../molecules/DesctopHeader";
+import Button from "../atoms/Button";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,9 +36,9 @@ const Header = () => {
         }}
       >
         <Logo />
-        {/* <DesktopHeader/> */}
         <DesctopHeader />
         <BurgerMenu />
+        <Button/>
       </div>
       <div id="home" style={{ height: "50px" }}></div>
     </>
