@@ -47,9 +47,9 @@ const BurgerMenu = () => {
           justifyContent: "center",
           cursor: "pointer",
         }}
-        className="lg:hidden"
+        className="md:hidden"
       >
-        <div className="flex flex-col gap-[5px] justify-center items-center">
+        <div className="flex flex-col gap-[5px] justify-center items-center md:hidden">
           <BurgerLine showOptions={showOptions} position="top" />
           <BurgerLine showOptions={showOptions} position="middle" />
           <BurgerLine showOptions={showOptions} position="bottom" />

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import BurgerMenu from "../molecules/BurgerMenu";
 import Logo from "../atoms/Logo";
+import { DesctopHeader } from "../molecules/DesctopHeader";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -22,7 +23,7 @@ const Header = () => {
   return (
     <>
       <div
-        className={`fixed top-0 flex justify-between mx-auto w-full max-w-[1920px] px-4 md:px-8 lg:px-24 items-center transition-all duration-300 ease-in-out ${
+        className={`fixed top-0 flex justify-between mx-auto w-full max-w-[1920px] px-4 md:px-8 lg:px-24 lg:py-1.5 items-center transition-all duration-300 ease-in-out ${
           isScrolled
             ? "backdrop-blur-md bg-[rgba(255, 255, 255, 0.3)]"
             : "backdrop-blur-none bg-transparent"
@@ -34,9 +35,11 @@ const Header = () => {
         }}
       >
         <Logo />
+        {/* <DesktopHeader/> */}
+        <DesctopHeader />
         <BurgerMenu />
       </div>
-      <div id="home" style={{height:"50px"}}></div>
+      <div id="home" style={{ height: "50px" }}></div>
     </>
   );
 };
