@@ -13,7 +13,7 @@ const rancho = Rancho({
 const Skills = () => {
   return (
     <section
-      className={`${rancho.variable} flex flex-col items-center gap-3 mx-[16px] mt-2.5`}
+      className={`${rancho.variable} flex flex-col items-center gap-3 mx-[16px] mt-2.5 sm:mt-5 md:mx-8 md:mt-10 lg:mx-24 lg:mt-16`}
       id="skills"
     >
       <motion.h1

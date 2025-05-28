@@ -30,7 +30,7 @@ const About = () => {
         <br /> Gdzelishvili
         </h2>
         <Typewriter />
-        <p className="text-white font-main text-sm sm:text-base md:text-lg mt-4 max-w-[220px] sm:max-w-sm md:max-w-md lg:max-w-lg">
+        <p className="text-white font-main text-sm sm:text-base md:text-lg lg:text-xl mt-1 max-w-[220px] sm:max-w-sm md:max-w-md lg:max-w-lg">
         a passionate Full Stack Web Developer with 2 years of experience in
         building dynamic and scalable web applications. I specialize in both
         front-end and back-end development, working with modern technologies

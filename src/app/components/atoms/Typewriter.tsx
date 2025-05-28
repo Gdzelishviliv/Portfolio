@@ -1,4 +1,11 @@
+import { Rancho } from "next/font/google";
 import { useTypewriter } from "react-simple-typewriter";
+
+const vt323 = Rancho({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-rancho",
+});
 
 const Typewriter = () => {
   const [text] = useTypewriter({
@@ -15,8 +22,8 @@ const Typewriter = () => {
     delaySpeed: 1000,
   });
   return (
-    <h2 className="text-white">
-      {text}<span className="cursor-blink">|</span>
+    <h2 className={`text-white ${vt323.variable} font-secondary md:text-xl lg:text-[22px]`}>
+      {text}<span className="font-secondary cursor-blink">|</span>
     </h2>
   );
 };
