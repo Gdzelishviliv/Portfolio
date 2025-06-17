@@ -1,6 +1,6 @@
 "use client";
 import Head from "next/head";
-import { About, Projects, Skills } from "./components/main";
+import { About, Contacts, Projects, Skills } from "./components/main";
 
 export default function Home() {
   return (
@@ -13,7 +13,8 @@ export default function Home() {
       </Head>
       <About />
       <Skills />
-      <Projects/>
+      <Projects />
+      <Contacts />
     </>
   );
 }
