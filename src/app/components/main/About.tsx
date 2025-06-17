@@ -23,10 +23,10 @@ const About = () => {
     <>
       <section
         id="about"
-        className={`${rancho.variable} ${vt323.variable} mx-4 mt-6 relative flex flex-col gap-5 md:mx-8 md:mt-12 md:flex-row md:gap-12 lg:mx-24 lg:mt-16 lg:gap-16`}
+        className={`${rancho.variable} ${vt323.variable} mx-4 pt-16 relative flex flex-col gap-5 md:mx-8 md:mt-12 md:flex-row md:gap-12 lg:mx-24 lg:mt-16 lg:gap-16`}
       >
         <div className="flex flex-col relative">
-          <h1 className="text-white tracking-widest font-main text-lg sm:text-xl md:text-2xl lg:text-3xl">
+          <h1 className="text-white tracking-widest font-main text-2xl sm:text-3xl md:text-4xl lg:text-4xl">
             Hi I<span className="gradient-text">’</span>m
           </h1>
           <h2 className="gradient-text font-secondary text-2xl/[20px] sm:text-3xl/[30px] md:text-4xl/[30px] lg:text-4xl/[35px] mt-1">

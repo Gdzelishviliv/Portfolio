@@ -26,11 +26,11 @@ const Projects = () => {
 
   return (
     <section
-      className={`${rancho.variable} flex flex-col items-center mt-16 mb-5 overflow-hidden`}
+      className={`${rancho.variable} flex flex-col items-center pt-16 mb-5 overflow-hidden`}
       id="projects"
     >
       <motion.h1
-        className="text-white font-main font-bold tracking-wider text-lg sm:text-xl md:text-2xl lg:text-3xl relative overflow-hidden"
+        className="text-white font-main font-bold tracking-wider text-2xl sm:text-3xl md:text-4xl lg:text-4xl relative overflow-hidden"
         initial={{ opacity: 0 }}
         whileInView={{
           opacity: 1,

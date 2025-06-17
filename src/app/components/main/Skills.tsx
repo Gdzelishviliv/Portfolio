@@ -13,11 +13,11 @@ const rancho = Rancho({
 const Skills = () => {
   return (
     <section
-      className={`${rancho.variable} flex flex-col items-center gap-3 mx-[16px] mt-2.5 sm:mt-5 md:mx-8 md:mt-10 lg:mx-24 lg:mt-16`}
+      className={`${rancho.variable} flex flex-col items-center gap-3 mx-[16px] pt-16 sm:mt-5 md:mx-8 md:mt-10 lg:mx-24 lg:mt-16`}
       id="skills"
     >
       <motion.h1
-        className="text-white font-main font-bold tracking-wider text-lg sm:text-xl md:text-2xl lg:text-3xl relative overflow-hidden"
+        className="text-white font-main font-bold tracking-wider text-2xl sm:text-3xl md:text-4xl lg:text-4xl relative overflow-hidden"
         initial={{ opacity: 0, }}
         whileInView={{
           opacity: 1,

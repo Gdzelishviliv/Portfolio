@@ -44,6 +44,7 @@ export function Contact() {
         });
       }
     } catch (error) {
+      console.error("Error occurred:", error);
       setStatus({
         type: "error",
         message: "Failed to send message. Please try again.",
@@ -63,7 +64,7 @@ export function Contact() {
           Send me a message
         </CardTitle>
         <CardDescription className="text-white">
-          Fill out the form below and I'll respond as soon as possible.
+          Fill out the form below and I&apos;ll respond as soon as possible.
         </CardDescription>
       </CardHeader>
 
