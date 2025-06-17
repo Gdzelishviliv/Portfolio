@@ -31,7 +31,7 @@ export async function sendContactEmail(formData: FormData) {
         const resend = new Resend(process.env.RESEND_API_KEY)
 
         await resend.emails.send({
-            from: 'Acme <onboarding@resend.dev>',
+            from: `${process.env.DOMAIN_NAME}`,
             to: `${process.env.EMAIL_FROM}`,
             subject: `Portfolio Contact: ${subject}`,
             html: `
