@@ -26,7 +26,7 @@ const Projects = () => {
 
   return (
     <section
-      className={`${rancho.variable} flex flex-col items-center pt-16 mb-5 overflow-hidden`}
+      className={`${rancho.variable} flex flex-col gap-3 md:gap-5 lg:gap-7 items-center pt-16 mb-5 overflow-hidden`}
       id="projects"
     >
       <motion.h1
