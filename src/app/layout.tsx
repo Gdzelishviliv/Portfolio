@@ -4,6 +4,7 @@ import ParticlesEffect from "./components/Custom/ParticlesEffect";
 import Header from "./components/organisms/Header";
 import Head from "next/head";
 import Effect from "./components/Custom/EnteranceAnimation";
+import FloatingCVButton from "./components/atoms/FloatingCvButton";
 
 export const metadata: Metadata = {
   title: "Portfolio",
@@ -33,6 +34,7 @@ export default function RootLayout({
           <Header />
           <Effect/>
           {children}
+          <FloatingCVButton />
         </body>
       </html>
     </>
