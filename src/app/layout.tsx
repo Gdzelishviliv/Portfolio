@@ -5,6 +5,7 @@ import Header from "./components/organisms/Header";
 import Head from "next/head";
 import Effect from "./components/Custom/EnteranceAnimation";
 import FloatingCVButton from "./components/atoms/FloatingCvButton";
+import Footer from "./components/organisms/Footer";
 
 export const metadata: Metadata = {
   title: "Portfolio",
@@ -35,6 +36,7 @@ export default function RootLayout({
           <Effect/>
           {children}
           <FloatingCVButton />
+          <Footer/>
         </body>
       </html>
     </>
