@@ -67,21 +67,6 @@ export default function FloatingCVButton() {
             transform: translateY(-8px);
           }
         }
-
-        @keyframes shine {
-          0% {
-            transform: translateY(-100%);
-            opacity: ;
-          }
-          50% {
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(100%);
-            opacity: 0;
-          }
-        }
-
         @keyframes fade-in-up {
           0% {
             opacity: 0;
@@ -97,16 +82,10 @@ export default function FloatingCVButton() {
           animation: float 3s ease-in-out infinite;
         }
 
-        .animate-shine {
-          animation: shine 2.5s ease-in-out infinite;
-          animation-delay: 1.5s;
-        }
-
         .animate-fade-in-up {
           animation: fade-in-up 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Enhanced touch feedback */
         @media (hover: none) and (pointer: coarse) {
           button:active {
             transform: translateY(-6px) scale(0.98);
@@ -114,7 +93,6 @@ export default function FloatingCVButton() {
           }
         }
 
-        /* Smooth backdrop filter transition */
         button {
           transition:
             background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
