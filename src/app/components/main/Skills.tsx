@@ -1,118 +1,96 @@
 "use client";
 import React from "react";
 import { Backend_skill, Frontend_skill, Full_stack } from "../../constants";
+import SkillsDataProvider from "../sub/SkillsDataProvider";
 import { motion } from "framer-motion";
-import Image from "next/image";
-
-interface SkillItem {
-  skill_name: string;
-  Image: string;
-  width: number;
-  height: number;
-}
-
-interface SkillCategoryProps {
-  title: string;
-  skills: SkillItem[];
-  accentColor: string;
-}
-
-const SkillCard = ({ skill, index }: { skill: SkillItem; index: number }) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ delay: index * 0.05, duration: 0.4, ease: "easeOut" }}
-      whileHover={{ 
-        y: -4, 
-        transition: { duration: 0.2 } 
-      }}
-      className="group relative flex flex-col items-center gap-3 p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-300"
-    >
-      <div className="relative w-12 h-12 flex items-center justify-center">
-        <Image
-          src={skill.Image}
-          width={48}
-          height={48}
-          alt={skill.skill_name}
-          className="object-contain transition-transform duration-300 group-hover:scale-110"
-          style={{ width: "auto", height: "auto", maxWidth: "48px", maxHeight: "48px" }}
-        />
-      </div>
-      <span className="text-xs text-white/60 group-hover:text-white/90 transition-colors duration-300 text-center font-medium">
-        {skill.skill_name}
-      </span>
-    </motion.div>
-  );
-};
-
-const SkillCategory = ({ title, skills, accentColor }: SkillCategoryProps) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="w-full"
-    >
-      <div className="flex items-center gap-3 mb-6">
-        <div className={`w-1 h-6 rounded-full ${accentColor}`} />
-        <h3 className="text-sm uppercase tracking-widest text-white/50 font-medium">
-          {title}
-        </h3>
-      </div>
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
-        {skills.map((skill, index) => (
-          <SkillCard key={skill.skill_name} skill={skill} index={index} />
-        ))}
-      </div>
-    </motion.div>
-  );
-};
 
 const Skills = () => {
   return (
     <section
-      className="relative px-4 md:px-8 lg:px-24 pt-24 pb-16"
+      className="flex flex-col items-center gap-6 md:gap-8 mx-4 pt-20 md:mx-8 md:pt-24 lg:mx-24 lg:pt-28"
       id="skills"
     >
-      <div className="max-w-6xl mx-auto">
+      <motion.div
+        className="text-center"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6 }}
+      >
+        <h2 className="text-white font-bold tracking-wider text-2xl sm:text-3xl md:text-4xl">
+          My Skills <span className="gradient-text">&</span> Tech Stack
+        </h2>
+        <p className="text-white/50 mt-3 max-w-md mx-auto text-sm md:text-base">
+          Technologies I work with to build modern web applications
+        </p>
+      </motion.div>
+
+      <div className="w-full max-w-4xl space-y-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <p className="text-sm uppercase tracking-widest text-teal-400/80 mb-3">
-            Expertise
+          <p className="text-white/40 text-xs uppercase tracking-widest mb-4 text-center">
+            Frontend
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-            Skills <span className="gradient-text">&</span> Tech Stack
-          </h2>
-          <p className="text-white/50 max-w-2xl text-base md:text-lg leading-relaxed">
-            Technologies and tools I use to bring products to life, from frontend interfaces to backend systems.
-          </p>
+          <div className="flex flex-row justify-center flex-wrap gap-5 items-center">
+            {Frontend_skill.map((image, index) => (
+              <SkillsDataProvider
+                key={index}
+                src={image.Image}
+                width={image.width}
+                height={image.height}
+                index={index}
+              />
+            ))}
+          </div>
         </motion.div>
 
-        <div className="flex flex-col gap-12">
-          <SkillCategory
-            title="Frontend"
-            skills={Frontend_skill}
-            accentColor="bg-teal-400"
-          />
-          <SkillCategory
-            title="Backend"
-            skills={Backend_skill}
-            accentColor="bg-orange-400"
-          />
-          <SkillCategory
-            title="Tools & Other"
-            skills={Full_stack}
-            accentColor="bg-blue-400"
-          />
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <p className="text-white/40 text-xs uppercase tracking-widest mb-4 text-center">
+            Backend
+          </p>
+          <div className="flex flex-row justify-center flex-wrap gap-5 items-center">
+            {Backend_skill.map((image, index) => (
+              <SkillsDataProvider
+                key={index}
+                src={image.Image}
+                width={image.width}
+                height={image.height}
+                index={index}
+              />
+            ))}
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <p className="text-white/40 text-xs uppercase tracking-widest mb-4 text-center">
+            Tools
+          </p>
+          <div className="flex flex-row justify-center flex-wrap gap-5 items-center">
+            {Full_stack.map((image, index) => (
+              <SkillsDataProvider
+                key={index}
+                src={image.Image}
+                width={image.width}
+                height={image.height}
+                index={index}
+              />
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

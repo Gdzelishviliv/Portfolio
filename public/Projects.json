@@ -1,30 +1,26 @@
 [
   {
-    "title": "Alliance Loyalty",
+    "title": "Alliance loyalty",
     "description": "A platform to manage customer loyalty programs efficiently.",
     "backgroundImage": "/assets/Alliance.png",
-    "href": "https://ally.resoft.dev",
-    "technologies": ["React", "Next.js", "TypeScript"]
+    "href": "https://ally.resoft.dev"
   },
   {
-    "title": "Movies App",
+    "title": "Movies app",
     "description": "An application to browse, search, and review movies.",
     "backgroundImage": "/assets/Movies.png",
-    "href": "https://movie-site-ten-delta.vercel.app",
-    "technologies": ["React", "API", "Tailwind"]
+    "href": "https://movie-site-ten-delta.vercel.app"
   },
   {
-    "title": "Planets Website",
+    "title": "Planets website",
     "description": "An interactive website showcasing information about planets in our solar system.",
     "backgroundImage": "/assets/Planets.png",
-    "href": "https://planets-website-rho.vercel.app",
-    "technologies": ["React", "CSS", "JavaScript"]
+    "href": "https://planets-website-rho.vercel.app"
   },
   {
-    "title": "Rest Countries",
+    "title": "Rest-countries",
     "description": "A web app to explore details about countries using REST APIs.",
     "backgroundImage": "/assets/Countries.png",
-    "href": "https://rest-countries-iota-eight.vercel.app",
-    "technologies": ["React", "REST API", "Tailwind"]
+    "href": "https://rest-countries-iota-eight.vercel.app"
   }
 ]
