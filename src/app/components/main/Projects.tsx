@@ -2,11 +2,12 @@
 import React, { useEffect, useState } from "react";
 import { Rancho } from "next/font/google";
 import { motion } from "framer-motion";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCards, Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/effect-cards";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import { EffectCards, Autoplay } from "swiper/modules";
+// import "swiper/css";
+// import "swiper/css/effect-cards";
 import { ProjectsProps } from "@/app/types/projects";
+import ProjectCard from "../molecules/ProjectCard";
 
 const rancho = Rancho({
   subsets: ["latin"],
@@ -29,8 +30,8 @@ const Projects = () => {
       className={`${rancho.variable} flex flex-col gap-3 md:gap-5 lg:gap-7 items-center pt-16 mb-5 overflow-hidden`}
       id="projects"
     >
-      <motion.h1
-        className="text-white font-main font-bold tracking-wider text-2xl sm:text-3xl md:text-4xl lg:text-4xl relative overflow-hidden"
+      <motion.div
+        className="text-center"
         initial={{ opacity: 0 }}
         whileInView={{
           opacity: 1,
@@ -48,42 +49,27 @@ const Projects = () => {
           animationDelay: "0.8s",
         }}
       >
-        Projects
-      </motion.h1>
-      <Swiper
-        effect={"cards"}
-        grabCursor={true}
-        autoplay={{
-          delay: 3000,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
-        }}
-        modules={[EffectCards, Autoplay]}
-        className="mySwiper mt-4"
-      >
-        {projects.map((project, index) => (
-          <SwiperSlide key={index}>
-            <a href={project.href} target="_blank" rel="noopener noreferrer">
-              <div
-                className="text-center text-white"
-                style={{
-                  backgroundImage: `url(${project.backgroundImage})`,
-                  backgroundSize: "240px",
-                  backgroundPosition: "top",
-                  backgroundRepeat: "no-repeat",
-                  minHeight: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                }}
-              >
-                <h2 className="font-bold text-lg mt-8">{project.title}</h2>
-                <p className="text-sm">{project.description}</p>
-              </div>
-            </a>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+        <h2 className="text-white font-main font-bold tracking-wider text-2xl sm:text-3xl md:text-4xl lg:text-4xl relative overflow-hidden">
+          Projects
+        </h2>
+        <p className="text-white/50 mt-3 max-w-md mx-auto text-sm md:text-base">
+          A collection of projects that showcase my skills and passion for building great digital experiences.
+        </p>
+      </motion.div>
+     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          {projects.map((project, index) => (
+            <ProjectCard key={index} project={project} index={index} />
+          ))}
+        </div>
+
+        {projects.length === 0 && (
+          <div className="flex items-center justify-center min-h-[300px]">
+            <div className="text-white/30 text-center">
+              <div className="w-12 h-12 border-2 border-white/20 border-t-teal-400 rounded-full animate-spin mx-auto mb-4" />
+              <p>Loading projects...</p>
+            </div>
+          </div>
+        )}
     </section>
   );
 };

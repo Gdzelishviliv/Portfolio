@@ -1,6 +1,7 @@
 export interface ProjectsProps {
-    title: string;
-    description: string;
-    backgroundImage: string;
-    href: string;
-  };
+  title: string;
+  description: string;
+  backgroundImage: string;
+  href: string;
+  technologies?: string[];
+};

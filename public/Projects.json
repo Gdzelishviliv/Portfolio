@@ -2,13 +2,13 @@
   {
     "title": "Alliance loyalty",
     "description": "A platform to manage customer loyalty programs efficiently.",
-    "backgroundImage": "./assets/Alliance.png",
+    "backgroundImage": "/assets/Alliance.png",
     "href": "https://ally.resoft.dev"
   },
   {
     "title": "Movies app",
     "description": "An application to browse, search, and review movies.",
-    "backgroundImage": "./assets/Movies.png",
+    "backgroundImage": "/assets/Movies.png",
     "href": "https://movie-site-ten-delta.vercel.app"
   },
   {
