@@ -1,34 +1,64 @@
+import { Rancho } from "next/font/google";
 import { Contact } from "../organisms/Contact";
 import { motion } from "framer-motion";
 
+const rancho = Rancho({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-rancho",
+});
+
 export default function ContactPage() {
   return (
-    <section
+    <div
       id="contact"
-      className="container mx-auto px-4 pt-20 pb-16 max-w-2xl md:pt-24 lg:pt-28"
+      className={`container mx-auto px-4 py-16 max-w-2xl ${rancho.variable}`}
     >
-      <motion.div
-        className="text-center mb-10"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.6 }}
-      >
-        <h2 className="text-white font-bold tracking-wider text-2xl sm:text-3xl md:text-4xl">
-          Get in Touch
-        </h2>
-        <p className="text-white/50 mt-3 max-w-md mx-auto text-sm md:text-base">
+      <div className="text-center mb-12 text-white">
+        <motion.h1
+          className="text-white font-main font-bold tracking-wider text-2xl sm:text-3xl md:text-4xl lg:text-4xl relative overflow-hidden"
+          initial={{ opacity: 0 }}
+          whileInView={{
+            opacity: 1,
+            clipPath: "inset(0 0 0 0)",
+            scale: 1,
+          }}
+          exit={{
+            opacity: 0,
+            clipPath: "inset(0 100% 0 0)",
+            scale: 0.8,
+          }}
+          viewport={{ once: false, amount: 0.2 }}
+          style={{
+            animation: "wave 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards",
+            animationDelay: "0.8s",
+          }}
+        >
+          Get in touch
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{
+            opacity: 1,
+            clipPath: "inset(0 0 0 0)",
+            scale: 1,
+          }}
+          exit={{
+            opacity: 0,
+            clipPath: "inset(0 100% 0 0)",
+            scale: 0.8,
+          }}
+          viewport={{ once: false, amount: 0.2 }}
+          style={{
+            animation: "wave 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards",
+            animationDelay: "0.8s",
+          }}
+          className="text-white text-lg font-main"
+        >
           Have a project in mind? Let&apos;s discuss how we can work together.
-        </p>
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-      >
-        <Contact />
-      </motion.div>
-    </section>
+        </motion.p>
+      </div>
+      <Contact />
+    </div>
   );
 }

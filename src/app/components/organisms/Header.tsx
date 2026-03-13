@@ -10,7 +10,11 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -19,19 +23,24 @@ const Header = () => {
 
   return (
     <>
-      <header
-        className={`fixed top-0 left-0 right-0 flex justify-between mx-auto w-full max-w-[1920px] px-4 md:px-8 lg:px-24 py-3 md:py-4 items-center transition-all duration-300 ease-in-out z-50 ${
+      <div
+        className={`fixed top-0 flex justify-between mx-auto w-full max-w-[1920px] px-4 md:px-8 lg:px-24 md:py-2 lg:py-4 items-center transition-all duration-300 ease-in-out ${
           isScrolled
-            ? "backdrop-blur-md bg-black/30 border-b border-white/5"
-            : "bg-transparent"
+            ? "backdrop-blur-md bg-[rgba(255, 255, 255, 0.3)]"
+            : "backdrop-blur-none bg-transparent"
         }`}
+        style={{
+          zIndex: 9999,
+          backdropFilter: isScrolled ? "blur(5px)" : "none",
+          WebkitBackdropFilter: isScrolled ? "blur(5px)" : "none",
+        }}
       >
         <Logo />
         <DesctopHeader />
         <BurgerMenu />
-        <Button />
-      </header>
-      <div id="home" className="h-16" />
+        <Button/>
+      </div>
+      <div id="home" style={{ height: "50px" }}></div>
     </>
   );
 };

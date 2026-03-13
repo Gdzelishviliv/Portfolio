@@ -4,7 +4,6 @@ import { VT323 } from "next/font/google"
 import { Rancho } from "next/font/google"
 import BubbleText from "../atoms/BubbleText"
 import { CreativeHero } from "../Custom/CreativeHero"
-import { motion } from "framer-motion"
 
 const vt323 = Rancho({
   subsets: ["latin"],
@@ -21,12 +20,9 @@ const rancho = VT323({
 const About = () => {
   return (
     <>
-      <motion.section
+      <section
         id="about"
-        className={`${rancho.variable} ${vt323.variable} mx-4 pt-20 relative md:mx-8 md:pt-24 lg:mx-24 lg:pt-28`}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
+        className={`${rancho.variable} ${vt323.variable} mx-4 pt-16 relative md:mx-8 md:mt-12 lg:mx-24 lg:mt-16`}
       >
         {/* Mobile Layout - Stacked */}
         <div className="flex flex-col gap-8 md:hidden">
@@ -65,7 +61,7 @@ const About = () => {
             </div>
           </div>
         </div>
-      </motion.section>
+      </section>
     </>
   )
 }

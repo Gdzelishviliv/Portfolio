@@ -3,4 +3,5 @@ export interface ProjectsProps {
     description: string;
     backgroundImage: string;
     href: string;
+    technologies?: string[];
   };

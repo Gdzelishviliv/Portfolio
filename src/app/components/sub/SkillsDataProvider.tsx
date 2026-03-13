@@ -11,35 +11,44 @@ const SkillsDataProvider = ({ src, width, height, index }: SkillsProps) => {
     threshold: 0.3,
   });
 
+  const imageVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: { opacity: 1, scale: 1 },
+  };
+
+  const animationDelay = 0.3;
   return (
     <motion.div
       ref={ref}
-      className="p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors duration-300"
-      initial={{ opacity: 0, y: 20 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      initial="hidden"
+      variants={imageVariants}
+      animate={inView ? "visible" : "hidden"}
+      custom={index}
       transition={{
-        delay: index * 0.05,
-        duration: 0.4,
+        delay: index * animationDelay,
+        duration: 0.6,
         ease: "easeOut",
       }}
+      whileInView={{
+        scale:1.05,
+        opacity:1,
+        transition:{
+          type:"spring",
+          stiffness:120,
+          damping:20,
+          duration:0.6,
+        }
+      }}
       whileHover={{
-        scale: 1.1,
-        transition: { duration: 0.2 },
+        scale:1.1,
+        rotate:5,
+        transition:{
+          duration:0.4,
+          ease:"easeInOut",
+        }
       }}
     >
-      <Image
-        src={src}
-        width={width}
-        height={height}
-        alt="skill icon"
-        style={{
-          objectFit: "cover",
-          width: "auto",
-          height: "auto",
-          maxWidth: "50px",
-          maxHeight: "50px",
-        }}
-      />
+      <Image src={src} width={width} height={height} alt="skills image" style={{objectFit:"cover",width:"auto",height:"auto",maxWidth:"60px",maxHeight:"60px"}} />
     </motion.div>
   );
 };
