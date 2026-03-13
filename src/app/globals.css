@@ -56,6 +56,16 @@ html {
   right: 0;
   z-index: -1;
 }
+.gradient-border {
+  background: linear-gradient(90deg, transparent, #ff7e5f, #feb47b, #6a11cb, #2575fc, transparent);
+  background-size: 200% 100%;
+  animation: gradient-border-move 3s linear infinite;
+}
+
+@keyframes gradient-border-move {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
 .gradient-text {
   font-weight: bold;
   background: linear-gradient(45deg, #ff7e5f, #feb47b, #6a11cb, #2575fc);
