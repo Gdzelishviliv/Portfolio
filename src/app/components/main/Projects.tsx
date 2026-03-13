@@ -56,7 +56,7 @@ const Projects = () => {
           A collection of projects that showcase my skills and passion for building great digital experiences.
         </p>
       </motion.div>
-     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 pb-6">
           {projects.map((project, index) => (
             <ProjectCard key={index} project={project} index={index} />
           ))}

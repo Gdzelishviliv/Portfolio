@@ -56,10 +56,32 @@ html {
   right: 0;
   z-index: -1;
 }
+.card-hover:hover {
+  animation: shadow-shift 6s ease infinite;
+}
+
+@keyframes shadow-shift {
+  0%   { box-shadow: 0 0 40px 4px rgba(255, 126, 95, 0.2), 0 0 40px 16px rgba(106, 17, 203, 0.12); }
+  33%  { box-shadow: 0 0 40px 4px rgba(254, 180, 123, 0.2), 0 0 40px 16px rgba(255, 126, 95, 0.12); }
+  66%  { box-shadow: 0 0 40px 4px rgba(37, 117, 252, 0.2), 0 0 40px 16px rgba(254, 180, 123, 0.12); }
+  100% { box-shadow: 0 0 40px 4px rgba(255, 126, 95, 0.2), 0 0 40px 16px rgba(106, 17, 203, 0.12); }
+}
+
 .gradient-border {
   background: linear-gradient(90deg, transparent, #ff7e5f, #feb47b, #6a11cb, #2575fc, transparent);
   background-size: 200% 100%;
   animation: gradient-border-move 3s linear infinite;
+}
+
+@keyframes gradient-border-move {
+  0%   { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+.gradient-border {
+  background: linear-gradient(90deg, transparent, #ff7e5f, #feb47b, #6a11cb, #2575fc, transparent);
+  background-size: 200% 300%;
+  animation: gradient-border-move 10s linear infinite;
 }
 
 @keyframes gradient-border-move {

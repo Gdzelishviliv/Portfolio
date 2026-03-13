@@ -14,7 +14,7 @@ const ProjectCard = ({ project, index }: { project: ProjectsProps; index: number
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ delay: index * 0.1, duration: 0.5, ease: "easeOut" }}
-            className="group relative block overflow-hidden rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.15] transition-all duration-500"
+            className="group relative block overflow-hidden rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.15] transition-all duration-500 card-hover"
         >
             <div className="relative aspect-[16/10] overflow-hidden">
                 <Image
