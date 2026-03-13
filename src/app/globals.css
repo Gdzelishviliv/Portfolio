@@ -58,12 +58,21 @@ html {
 }
 .gradient-text {
   font-weight: bold;
-  background: linear-gradient(45deg, #2dd4bf, #14b8a6, #0d9488, #0f766e);
+  background: linear-gradient(
+    45deg,
+    rgb(255, 0, 0),
+    rgb(255, 127, 0),
+    rgb(0, 255, 0),
+    rgb(0, 127, 255),
+    rgb(0, 0, 255),
+    rgb(127, 0, 255),
+    rgb(255, 0, 0)
+  );
   background-size: 400% 400%;
   color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
-  animation: gradient-animation 10s ease infinite;
+  animation: rgb-gradient-animation 6s ease infinite;
 }
 
 .line-clamp-2 {
@@ -72,6 +81,18 @@ html {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+@keyframes rgb-gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 @keyframes gradient-animation {
   0% {
     background-position: 0% 50%;
