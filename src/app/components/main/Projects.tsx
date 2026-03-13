@@ -1,18 +1,74 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Rancho } from "next/font/google";
 import { motion } from "framer-motion";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCards, Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/effect-cards";
+import Image from "next/image";
 import { ProjectsProps } from "@/app/types/projects";
 
-const rancho = Rancho({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-rancho",
-})
+const ProjectCard = ({ project, index }: { project: ProjectsProps; index: number }) => {
+  return (
+    <motion.a
+      href={project.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ delay: index * 0.1, duration: 0.5, ease: "easeOut" }}
+      className="group relative block overflow-hidden rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.15] transition-all duration-500"
+    >
+      <div className="relative aspect-[16/10] overflow-hidden">
+        <Image
+          src={project.backgroundImage}
+          alt={project.title}
+          fill
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+        
+        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20">
+            <svg 
+              className="w-5 h-5 text-white" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div className="relative p-6">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex-1">
+            <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-teal-400 transition-colors duration-300">
+              {project.title}
+            </h3>
+            <p className="text-white/50 text-sm leading-relaxed line-clamp-2">
+              {project.description}
+            </p>
+          </div>
+        </div>
+
+        {project.technologies && (
+          <div className="flex flex-wrap gap-2 mt-4">
+            {project.technologies.map((tech, i) => (
+              <span
+                key={i}
+                className="px-3 py-1 text-xs font-medium rounded-full bg-teal-400/10 text-teal-400 border border-teal-400/20"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-teal-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+    </motion.a>
+  );
+};
 
 const Projects = () => {
   const [projects, setProjects] = useState<ProjectsProps[]>([]);
@@ -26,64 +82,43 @@ const Projects = () => {
 
   return (
     <section
-      className={`${rancho.variable} flex flex-col gap-3 md:gap-5 lg:gap-7 items-center pt-16 mb-5 overflow-hidden`}
+      className="relative px-4 md:px-8 lg:px-24 pt-24 pb-16"
       id="projects"
     >
-      <motion.h1
-        className="text-white font-main font-bold tracking-wider text-2xl sm:text-3xl md:text-4xl lg:text-4xl relative overflow-hidden"
-        initial={{ opacity: 0 }}
-        whileInView={{
-          opacity: 1,
-          clipPath: "inset(0 0 0 0)",
-          scale: 1,
-        }}
-        exit={{
-          opacity: 0,
-          clipPath: "inset(0 100% 0 0)",
-          scale: 0.8,
-        }}
-        viewport={{ once: false, amount: 0.2 }}
-        style={{
-          animation: "wave 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards",
-          animationDelay: "0.8s",
-        }}
-      >
-        Projects
-      </motion.h1>
-      <Swiper
-        effect={"cards"}
-        grabCursor={true}
-        autoplay={{
-          delay: 3000,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
-        }}
-        modules={[EffectCards, Autoplay]}
-        className="mySwiper mt-4"
-      >
-        {projects.map((project, index) => (
-          <SwiperSlide key={index}>
-            <a href={project.href} target="_blank" rel="noopener noreferrer">
-              <div
-                className="text-center text-white"
-                style={{
-                  backgroundImage: `url(${project.backgroundImage})`,
-                  backgroundSize: "240px",
-                  backgroundPosition: "top",
-                  backgroundRepeat: "no-repeat",
-                  minHeight: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                }}
-              >
-                <h2 className="font-bold text-lg mt-8">{project.title}</h2>
-                <p className="text-sm">{project.description}</p>
-              </div>
-            </a>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+          className="mb-16"
+        >
+          <p className="text-sm uppercase tracking-widest text-teal-400/80 mb-3">
+            Selected Work
+          </p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+            Projects
+          </h2>
+          <p className="text-white/50 max-w-2xl text-base md:text-lg leading-relaxed">
+            A collection of projects that showcase my skills and passion for building great digital experiences.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          {projects.map((project, index) => (
+            <ProjectCard key={index} project={project} index={index} />
+          ))}
+        </div>
+
+        {projects.length === 0 && (
+          <div className="flex items-center justify-center min-h-[300px]">
+            <div className="text-white/30 text-center">
+              <div className="w-12 h-12 border-2 border-white/20 border-t-teal-400 rounded-full animate-spin mx-auto mb-4" />
+              <p>Loading projects...</p>
+            </div>
+          </div>
+        )}
+      </div>
     </section>
   );
 };
