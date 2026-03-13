@@ -2,14 +2,14 @@
   {
     "title": "Alliance Loyalty",
     "description": "A platform to manage customer loyalty programs efficiently.",
-    "backgroundImage": "./assets/Alliance.png",
+    "backgroundImage": "/assets/Alliance.png",
     "href": "https://ally.resoft.dev",
     "technologies": ["React", "Next.js", "TypeScript"]
   },
   {
     "title": "Movies App",
     "description": "An application to browse, search, and review movies.",
-    "backgroundImage": "./assets/Movies.png",
+    "backgroundImage": "/assets/Movies.png",
     "href": "https://movie-site-ten-delta.vercel.app",
     "technologies": ["React", "API", "Tailwind"]
   },
