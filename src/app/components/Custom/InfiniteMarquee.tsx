@@ -21,13 +21,13 @@ const items = [
 
 export const InfiniteMarquee = () => {
   return (
-    <div className="relative w-full overflow-hidden py-8 md:py-12">
+    <div className="relative w-full overflow-hidden py-2 md:py-4">
       {/* Gradient overlays for fade effect */}
       <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-[#050508] to-transparent z-10" />
       <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[#050508] to-transparent z-10" />
       
       {/* First row - scrolls left */}
-      <div className="flex mb-4">
+      {/* <div className="flex mb-4">
         <motion.div
           className="flex gap-4 md:gap-6"
           animate={{ x: ["0%", "-50%"] }}
@@ -51,7 +51,7 @@ export const InfiniteMarquee = () => {
             </div>
           ))}
         </motion.div>
-      </div>
+      </div> */}
 
       {/* Second row - scrolls right */}
       <div className="flex">

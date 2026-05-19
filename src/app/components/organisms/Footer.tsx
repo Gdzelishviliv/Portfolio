@@ -2,11 +2,13 @@
 
 import { Github, Linkedin, Facebook, Mail } from "lucide-react";
 import Link from "next/link";
+import InfiniteMarquee from "../Custom/InfiniteMarquee";
 
 export default function PortfolioFooter() {
   return (
     <footer className=" text-white relative overflow-hidden border-t border-white/20 bg-gradient-to-br from-white/5 to-transparent">
-      <div className="relative m-auto max-w-[1920px] py-16 inset-0 ">
+      <div className="relative m-auto max-w-[1920px] pb-16 inset-0 ">
+        <InfiniteMarquee />
         <div className="border-t border-white/20 px-4 md:px-8 lg:px-24 pt-8">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-4">
