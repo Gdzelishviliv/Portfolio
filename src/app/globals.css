@@ -126,26 +126,25 @@ html {
   }
 }
 
+.nav-active-rgb {
+  background: linear-gradient(
+    90deg,
+    rgba(34, 211, 238, 0.2),
+    rgba(59, 130, 246, 0.2),
+    rgba(139, 92, 246, 0.2),
+    rgba(236, 72, 153, 0.2),
+    rgba(34, 211, 238, 0.2)
+  );
+  background-size: 300% 100%;
+  animation: animated-rgb 4s linear infinite;
+}
+
 @keyframes animated-rgb {
   0% {
-    background: linear-gradient(90deg, rgba(34, 211, 238, 0.2), rgba(59, 130, 246, 0.2));
     background-position: 0% 50%;
-  }
-  25% {
-    background: linear-gradient(90deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
-    background-position: 50% 50%;
-  }
-  50% {
-    background: linear-gradient(90deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
-    background-position: 100% 50%;
-  }
-  75% {
-    background: linear-gradient(90deg, rgba(236, 72, 153, 0.2), rgba(34, 211, 238, 0.2));
-    background-position: 50% 50%;
   }
   100% {
-    background: linear-gradient(90deg, rgba(34, 211, 238, 0.2), rgba(59, 130, 246, 0.2));
-    background-position: 0% 50%;
+    background-position: 100% 50%;
   }
 }
 .swiper {
