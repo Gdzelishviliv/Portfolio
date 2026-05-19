@@ -1,6 +1,7 @@
 "use client";
 import Head from "next/head";
 import { About, Contacts, Projects, Skills } from "./components/main";
+import InfiniteMarquee from "./components/Custom/InfiniteMarquee";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <Skills />
       <Projects />
       <Contacts />
+      <InfiniteMarquee />
     </>
   );
 }
