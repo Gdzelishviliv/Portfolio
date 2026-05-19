@@ -24,7 +24,7 @@ const Header = () => {
   return (
     <>
       <div
-        className={`fixed top-0 flex justify-between mx-auto w-full max-w-[1920px] px-4 md:px-8 lg:px-24 md:py-2 lg:py-4 items-center transition-all duration-300 ease-in-out ${
+        className={`fixed top-0 flex justify-between items-center mx-auto w-full max-w-[1920px] px-4 md:px-8 lg:px-24 py-3 md:py-4 gap-4 transition-all duration-300 ease-in-out ${
           isScrolled
             ? "backdrop-blur-md bg-[rgba(255, 255, 255, 0.3)]"
             : "backdrop-blur-none bg-transparent"
@@ -40,7 +40,7 @@ const Header = () => {
         <BurgerMenu />
         <Button/>
       </div>
-      <div id="home" style={{ height: "50px" }}></div>
+      <div id="home" style={{ height: "60px" }}></div>
     </>
   );
 };

@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-scroll";
 
@@ -9,6 +9,27 @@ export const DesctopHeader = () => {
     width: 0,
     opacity: 0,
   });
+  const [activeSection, setActiveSection] = useState("about");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ["about", "skills", "projects", "contact"];
+      
+      for (let section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 150 && rect.bottom >= 150) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <ul
@@ -18,10 +39,15 @@ export const DesctopHeader = () => {
           opacity: 0,
         }));
       }}
-      className="relative mx-auto w-fit rounded-full border-2 border-white/10 p-1 hidden md:flex"
+      className="relative mx-auto w-fit rounded-full border-2 border-white/10 p-1 hidden md:flex gap-1"
     >
       {["about", "skills", "projects", "contact"].map((section) => (
-        <Tab key={section} setPosition={setPosition} section={section}>
+        <Tab 
+          key={section} 
+          setPosition={setPosition} 
+          section={section}
+          isActive={activeSection === section}
+        >
           {section.charAt(0).toUpperCase() + section.slice(1)}
         </Tab>
       ))}
@@ -34,12 +60,14 @@ const Tab = ({
   children,
   setPosition,
   section,
+  isActive,
 }: {
   children: React.ReactNode;
   setPosition: React.Dispatch<
     React.SetStateAction<{ left: number; width: number; opacity: number }>
   >;
   section: string;
+  isActive: boolean;
 }) => {
   const ref = useRef<HTMLLIElement>(null);
 
@@ -57,13 +85,17 @@ const Tab = ({
           opacity: 1,
         });
       }}
-      className="relative z-10 block cursor-pointer text-xs uppercase text-white mix-blend-difference md:px-5 md:py-2 md:text-base"
+      className={`relative z-10 block cursor-pointer uppercase text-sm font-medium transition-all duration-200 md:px-4 md:py-2 ${
+        isActive 
+          ? "text-white" 
+          : "text-gray-300 hover:text-white"
+      }`}
     >
       <Link
         to={section}
         smooth={true}
         duration={300}
-        className="text-lg text-white hover:text-gray-300 transition-colors duration-200"
+        className="block"
       >
         {children || section.charAt(0).toUpperCase() + section.slice(1)}
       </Link>
@@ -77,7 +109,7 @@ const Cursor = ({ position }: { position: { left: number; width: number; opacity
       animate={{
         ...position,
       }}
-      className="absolute z-0 h-10 rounded-full bg-white"
+      className="absolute z-0 h-9 rounded-full bg-white/10 backdrop-blur-sm"
     />
   );
 };
