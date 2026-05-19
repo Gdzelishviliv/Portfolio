@@ -1,6 +1,5 @@
 "use client";
 import { motion } from "framer-motion";
-import {Link} from "react-scroll"
 import { useState, useEffect } from "react";
 
 const Logo = () => {
@@ -11,7 +10,7 @@ const Logo = () => {
   }, []);
 
   return (
-    <Link to="home" smooth={true} duration={350}  className="cursor-pointer">
+    <a href="#home" className="cursor-pointer" aria-label="Go to top of page">
       <motion.svg
         aria-label="Website Logo"
         xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +46,7 @@ const Logo = () => {
           }}
         />
       </motion.svg>
-    </Link>
+    </a>
   );
 };
 

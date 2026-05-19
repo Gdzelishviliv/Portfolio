@@ -1,7 +1,6 @@
 "use client";
 import React, { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-scroll";
 
 export const DesctopHeader = () => {
   const [position, setPosition] = useState({
@@ -15,7 +14,7 @@ export const DesctopHeader = () => {
     const handleScroll = () => {
       const sections = ["about", "skills", "projects", "contact"];
       
-      for (let section of sections) {
+      for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
@@ -91,14 +90,13 @@ const Tab = ({
           : "text-gray-300 hover:text-white"
       }`}
     >
-      <Link
-        to={section}
-        smooth={true}
-        duration={300}
+      <a
+        href={`#${section}`}
         className="block"
+        aria-current={isActive ? "page" : undefined}
       >
         {children || section.charAt(0).toUpperCase() + section.slice(1)}
-      </Link>
+      </a>
     </li>
   );
 };

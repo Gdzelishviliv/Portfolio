@@ -1,14 +1,29 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 
 export function CreativeHero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+
+    if (prefersReducedMotion) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(canvas);
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
@@ -32,14 +47,10 @@ export function CreativeHero() {
       canvas.width = rect.width * devicePixelRatio;
       canvas.height = rect.height * devicePixelRatio;
 
-      ctx.scale(devicePixelRatio, devicePixelRatio);
+      ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
     };
 
     setCanvasDimensions();
-    window.addEventListener("resize", () => {
-      setCanvasDimensions();
-      checkMobile();
-    });
 
     // Mouse/Touch position
     let mouseX = 0;
@@ -176,7 +187,7 @@ export function CreativeHero() {
 
     // Create particle grid
     const particlesArray: Particle[] = [];
-    const gridSize = isMobile ? 40 : 30; // Larger grid spacing on mobile for better performance
+    const gridSize = isMobile ? 44 : 36;
 
     function init() {
       particlesArray.length = 0;
@@ -201,7 +212,12 @@ export function CreativeHero() {
     init();
 
     // Animation loop
+    let animationFrameId = 0;
     const animate = () => {
+      if (!isVisible) {
+        return;
+      }
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       animationTime++;
 
@@ -215,8 +231,8 @@ export function CreativeHero() {
         particlesArray[i].draw(ctx);
 
         // Draw connections (reduced on mobile for performance)
-        const connectionDistance = isMobile ? 25 : 30;
-        const maxConnections = isMobile ? 3 : 5;
+        const connectionDistance = isMobile ? 24 : 28;
+        const maxConnections = isMobile ? 2 : 3;
 
         let connectionCount = 0;
         for (
@@ -240,7 +256,7 @@ export function CreativeHero() {
           }
         }
       }
-      requestAnimationFrame(animate);
+      animationFrameId = requestAnimationFrame(animate);
     };
 
     animate();
@@ -254,14 +270,15 @@ export function CreativeHero() {
     window.addEventListener("resize", handleResize);
 
     return () => {
+      observer.disconnect();
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", handleResize);
       canvas.removeEventListener("touchstart", handleTouchStart);
       canvas.removeEventListener("touchmove", handleTouchMove);
       canvas.removeEventListener("touchend", handleTouchEnd);
-      window.removeEventListener("resize", setCanvasDimensions);
+      cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [prefersReducedMotion, isVisible]);
 
   return (
     <motion.div
@@ -270,6 +287,9 @@ export function CreativeHero() {
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
+      {(prefersReducedMotion || !isVisible) && (
+        <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-white/10 via-white/5 to-transparent border border-white/10" />
+      )}
       <canvas
         ref={canvasRef}
         className="w-full h-full rounded-lg"

@@ -1,14 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import ParticlesEffect from "./components/Custom/ParticlesEffect";
-import Header from "./components/organisms/Header";
-import Head from "next/head";
-import Effect from "./components/Custom/EnteranceAnimation";
-import FloatingCVButton from "./components/atoms/FloatingCvButton";
-import Footer from "./components/organisms/Footer";
+import AppShell from "./components/organisms/AppShell";
 
 export const metadata: Metadata = {
   title: "Portfolio",
+  description:
+    "Welcome to my portfolio showcasing my web development and design projects. Explore my skills and experience!",
 };
 
 export default function RootLayout({
@@ -17,28 +14,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
-      <Head>
-        <meta
-          name="description"
-          content="Welcome to my portfolio showcasing my web development and design projects. Explore my skills and experience!"
-        />
-        <link
-          rel="preload"
-          href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-          as="style"
-        />
-      </Head>
-      <ParticlesEffect />
-      <html lang="en">
-        <body className="max-w-[1920px] m-auto min-h-screen p-0 relative">
-          <Header />
-          <Effect/>
-          {children}
-          <FloatingCVButton />
-          <Footer/>
-        </body>
-      </html>
-    </>
+    <html lang="en">
+      <body className="max-w-[1920px] m-auto min-h-screen p-0 relative">
+        <AppShell>{children}</AppShell>
+      </body>
+    </html>
   );
 }

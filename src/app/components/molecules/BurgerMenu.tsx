@@ -2,7 +2,6 @@
 import { memo, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import BurgerLine from "../atoms/BurgerLine";
-import { Link } from "react-scroll";
 
 const BurgerMenu = () => {
   const [showOptions, setShowOptions] = useState(false);
@@ -122,11 +121,9 @@ const BurgerMenu = () => {
                         }}
                         transition={{ duration: 0.3, ease: "easeOut" }}
                       >
-                        <Link
+                        <a
+                          href={`#${section}`}
                           onClick={closeMenu}
-                          to={section}
-                          smooth={true}
-                          duration={300}
                           className={`block py-4 px-4 rounded-xl text-lg font-medium uppercase tracking-wide transition-all duration-200 cursor-pointer ${
                             activeSection === section
                               ? "text-white nav-active-rgb"
@@ -139,12 +136,11 @@ const BurgerMenu = () => {
                             </span>
                             {section.charAt(0).toUpperCase() + section.slice(1)}
                           </span>
-                        </Link>
+                        </a>
                       </motion.li>
                     ))}
                   </motion.ul>
                 </nav>
-
                 {/* Bottom Section */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}

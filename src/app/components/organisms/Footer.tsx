@@ -49,7 +49,8 @@ export default function PortfolioFooter() {
             </div>
             <div className="text-white/80 text-sm text-center sm:text-right">
               <p>
-                &copy; {new Date().getFullYear()} Ivane Gdzelishvili. All rights
+                &copy; <span suppressHydrationWarning>{new Date().getFullYear()}</span>{" "}
+                Ivane Gdzelishvili. All rights
                 reserved.
               </p>
               <p className="mt-1">Built with Next.js</p>
