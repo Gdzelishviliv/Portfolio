@@ -1,19 +1,8 @@
-"use client"
-import dynamic from "next/dynamic"
 import Typewriter from "../atoms/Typewriter"
 import { VT323 } from "next/font/google"
 import { Rancho } from "next/font/google"
 import BubbleText from "../atoms/BubbleText"
-
-const CreativeHero = dynamic(
-  () => import("../Custom/CreativeHero").then((module) => module.CreativeHero),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="w-full h-[200px] md:h-[350px] lg:h-[400px] xl:h-[450px] rounded-lg border border-white/10 bg-gradient-to-br from-white/10 to-transparent backdrop-blur-sm" />
-    ),
-  }
-)
+import { CreativeHeroWrapper } from "../atoms/CreativeHeroWrapper"
 
 const vt323 = Rancho({
   subsets: ["latin"],
@@ -34,7 +23,6 @@ const About = () => {
         id="about"
         className={`${rancho.variable} ${vt323.variable} px-4 pt-8 pb-4 relative md:px-8 md:pt-12 lg:px-24 lg:pt-16`}
       >
-        {/* Mobile Layout - Stacked */}
         <div className="flex flex-col gap-6 md:hidden">
           <div className="flex flex-col items-center text-center">
             <h1 className="text-white tracking-widest font-main text-xl">
@@ -48,14 +36,12 @@ const About = () => {
             </div>
           </div>
           <div className="w-full max-w-[280px] mx-auto">
-            <CreativeHero />
+            <CreativeHeroWrapper />
           </div>
           <div className="mt-2">
             <BubbleText />
           </div>
         </div>
-
-        {/* Tablet and Desktop Layout - Side by Side */}
         <div className="hidden md:flex md:gap-8 lg:gap-12 xl:gap-16 items-center">
           <div className="flex flex-col md:flex-1 lg:max-w-md xl:max-w-lg">
             <h1 className="text-white tracking-widest font-main text-3xl lg:text-4xl xl:text-5xl">
@@ -70,7 +56,7 @@ const About = () => {
           </div>
           <div className="md:flex-1 lg:flex-1 xl:flex-1 flex justify-center items-start">
             <div className="w-full max-w-md lg:max-w-lg xl:max-w-xl">
-              <CreativeHero />
+              <CreativeHeroWrapper />
             </div>
           </div>
         </div>

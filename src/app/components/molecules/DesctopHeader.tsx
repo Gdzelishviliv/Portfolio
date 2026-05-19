@@ -1,6 +1,10 @@
 "use client";
-import React, { useRef, useState, useEffect } from "react";
+
+import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { useActiveSection } from "../hooks/useActiveSection";
+
+const SECTIONS = ["about", "skills", "projects", "contact"] as const;
 
 export const DesctopHeader = () => {
   const [position, setPosition] = useState({
@@ -8,27 +12,7 @@ export const DesctopHeader = () => {
     width: 0,
     opacity: 0,
   });
-  const [activeSection, setActiveSection] = useState("about");
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ["about", "skills", "projects", "contact"];
-      
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 150 && rect.bottom >= 150) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const activeSection = useActiveSection(SECTIONS);
 
   return (
     <ul
@@ -40,10 +24,10 @@ export const DesctopHeader = () => {
       }}
       className="relative mx-auto w-fit rounded-full border-2 border-white/10 p-1 hidden md:flex gap-1"
     >
-      {["about", "skills", "projects", "contact"].map((section) => (
-        <Tab 
-          key={section} 
-          setPosition={setPosition} 
+      {SECTIONS.map((section) => (
+        <Tab
+          key={section}
+          setPosition={setPosition}
           section={section}
           isActive={activeSection === section}
         >
@@ -74,7 +58,7 @@ const Tab = ({
     <li
       ref={ref}
       onMouseEnter={() => {
-        if (!ref?.current) return;
+        if (!ref.current) return;
 
         const { width } = ref.current.getBoundingClientRect();
 
@@ -85,9 +69,7 @@ const Tab = ({
         });
       }}
       className={`relative z-10 block cursor-pointer uppercase text-sm font-medium transition-all duration-200 md:px-4 md:py-2 rounded-full ${
-        isActive 
-          ? "text-white nav-active-rgb" 
-          : "text-gray-300 hover:text-white"
+        isActive ? "text-white nav-active-rgb" : "text-gray-300 hover:text-white"
       }`}
     >
       <a

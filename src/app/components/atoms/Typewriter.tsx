@@ -1,3 +1,4 @@
+"use client";
 import { Rancho } from "next/font/google";
 import { useTypewriter } from "react-simple-typewriter";
 
