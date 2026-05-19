@@ -87,9 +87,10 @@ const Tab = ({
       }}
       className={`relative z-10 block cursor-pointer uppercase text-sm font-medium transition-all duration-200 md:px-4 md:py-2 rounded-full ${
         isActive 
-          ? "text-white bg-gradient-to-r from-cyan-500/20 to-blue-500/20" 
+          ? "text-white" 
           : "text-gray-300 hover:text-white"
       }`}
+      style={isActive ? { animation: "animated-rgb 3s ease infinite" } : {}}
     >
       <Link
         to={section}
