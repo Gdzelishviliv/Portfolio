@@ -1,3 +1,5 @@
+"use client";
+
 import { Rancho } from "next/font/google";
 import { Contact } from "../organisms/Contact";
 import { motion } from "framer-motion";

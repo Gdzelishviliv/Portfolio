@@ -1,3 +1,4 @@
+"use client";
 import { Rancho } from "next/font/google";
 import { useTypewriter } from "react-simple-typewriter";
 
@@ -23,7 +24,7 @@ const Typewriter = () => {
   });
   return (
     <h2 className={`text-white ${vt323.variable} font-secondary md:text-xl lg:text-[22px]`}>
-      {text}<span className="font-secondary cursor-blink">|</span>
+      {text}<span className="font-secondary cursor-blink gradient-text">|</span>
     </h2>
   );
 };

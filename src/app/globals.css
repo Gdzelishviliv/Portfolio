@@ -46,6 +46,7 @@
 }
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 #bg {
   position: absolute;
@@ -123,6 +124,28 @@ html {
     clip-path: inset(0 0 0 0);
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+.nav-active-rgb {
+  background: linear-gradient(
+    90deg,
+    rgba(34, 211, 238, 0.2),
+    rgba(59, 130, 246, 0.2),
+    rgba(139, 92, 246, 0.2),
+    rgba(236, 72, 153, 0.2),
+    rgba(34, 211, 238, 0.2)
+  );
+  background-size: 300% 100%;
+  animation: animated-rgb 4s linear infinite;
+}
+
+@keyframes animated-rgb {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
   }
 }
 .swiper {
@@ -269,5 +292,12 @@ html {
   }
   body {
     @apply bg-background text-foreground;
+    background: 
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(120, 119, 198, 0.15), transparent),
+      radial-gradient(ellipse 60% 40% at 100% 0%, rgba(59, 130, 246, 0.1), transparent),
+      radial-gradient(ellipse 60% 40% at 0% 100%, rgba(139, 92, 246, 0.08), transparent),
+      linear-gradient(180deg, #050508 0%, #0a0a12 50%, #050508 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
   }
 }

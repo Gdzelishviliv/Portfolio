@@ -5,6 +5,9 @@ import Image from 'next/image';
 import React from 'react'
 
 const ProjectCard = ({ project, index }: { project: ProjectsProps; index: number }) => {
+    const imageSizes = "(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw";
+    const isLcpCandidate = index === 2 || project.title.toLowerCase().includes("planets");
+
     return (
         <motion.a
             href={project.href}
@@ -21,6 +24,9 @@ const ProjectCard = ({ project, index }: { project: ProjectsProps; index: number
                     src={project.backgroundImage}
                     alt={project.title}
                     fill
+                    sizes={imageSizes}
+                    loading={isLcpCandidate ? "eager" : "lazy"}
+                    priority={isLcpCandidate}
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />

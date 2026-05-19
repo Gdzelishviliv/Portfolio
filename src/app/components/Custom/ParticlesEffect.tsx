@@ -4,16 +4,30 @@ import Script from "next/script";
 
 const ParticlesEffect = () => {
   const [scriptLoaded, setScriptLoaded] = useState(false);
+  const [shouldRender, setShouldRender] = useState(false);
 
   useEffect(() => {
-    if (scriptLoaded && typeof window !== "undefined" && window.particlesJS) {
+    const mediaQuery = window.matchMedia("(min-width: 1024px)");
+
+    const updateShouldRender = () => {
+      setShouldRender(mediaQuery.matches);
+    };
+
+    updateShouldRender();
+    mediaQuery.addEventListener("change", updateShouldRender);
+
+    return () => mediaQuery.removeEventListener("change", updateShouldRender);
+  }, []);
+
+  useEffect(() => {
+    if (scriptLoaded && shouldRender && typeof window !== "undefined" && window.particlesJS) {
       window.particlesJS("bg", {
         particles: {
           number: {
-            value: 90,
+            value: 52,
             density: {
               enable: true,
-              value_area: 315,
+              value_area: 540,
             },
           },
           color: {
@@ -35,20 +49,20 @@ const ParticlesEffect = () => {
             },
           },
           opacity: {
-            value: 0.5,
+            value: 0.35,
             random: true,
             anim: {
-              enable: true,
+              enable: false,
               speed: 0.1,
               opacity_min: 0.2,
               sync: false,
             },
           },
           size: {
-            value: 1.3,
+            value: 1.1,
             random: true,
             anim: {
-              enable: true,
+              enable: false,
               speed: 1,
               size_min: 0.5,
               sync: false,
@@ -63,9 +77,9 @@ const ParticlesEffect = () => {
           },
           move: {
             enable: true,
-            speed: 0.1,
+            speed: 0.18,
             direction: "none",
-            random: true,
+            random: false,
             straight: false,
             out_mode: "out",
             bounce: false,
@@ -80,11 +94,11 @@ const ParticlesEffect = () => {
           detect_on: "canvas",
           events: {
             onhover: {
-              enable: true,
+              enable: false,
               mode: "grab",
             },
             onclick: {
-              enable: true,
+              enable: false,
               mode: "push",
             },
             resize: true,
@@ -108,7 +122,7 @@ const ParticlesEffect = () => {
               duration: 0.4,
             },
             push: {
-              particles_nb: 4,
+              particles_nb: 2,
             },
             remove: {
               particles_nb: 2,
@@ -124,11 +138,12 @@ const ParticlesEffect = () => {
     <>
       <Script
         src="/particles.min.js"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         onLoad={() => setScriptLoaded(true)}
       />
       <div
         id="bg"
+        aria-hidden="true"
         style={{ position: "absolute", width: "100%", height: "100vh" }}
       />
     </>

@@ -14,7 +14,7 @@ const SkillsDataProvider = ({ src, width, height, index }: SkillsProps) => {
   return (
     <motion.div
       ref={ref}
-      className="p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors duration-300"
+      className="p-3 rounded-xl bg-white/5 hover:bg-white/10"
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{
@@ -32,12 +32,11 @@ const SkillsDataProvider = ({ src, width, height, index }: SkillsProps) => {
         width={width}
         height={height}
         alt="skill icon"
+        sizes="(max-width: 768px) 50px, 50px"
         style={{
-          objectFit: "cover",
-          width: "auto",
-          height: "auto",
-          maxWidth: "50px",
-          maxHeight: "50px",
+          objectFit: "contain",
+          width: "50px",
+          height: "50px",
         }}
       />
     </motion.div>
