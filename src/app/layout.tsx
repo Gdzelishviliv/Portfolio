@@ -31,7 +31,7 @@ export default function RootLayout({
       </Head>
       <ParticlesEffect />
       <html lang="en">
-        <body className="max-w-[1920px] m-auto bg-black h-[100%] p-0 relative">
+        <body className="max-w-[1920px] m-auto min-h-screen p-0 relative">
           <Header />
           <Effect/>
           {children}

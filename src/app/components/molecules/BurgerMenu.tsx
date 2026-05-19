@@ -57,7 +57,7 @@ const BurgerMenu = () => {
       <motion.button
         aria-label="Toggle menu"
         onClick={toggleOptions}
-        className="md:hidden relative z-[10001] w-10 h-10 flex items-center justify-center rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm"
+        className="md:hidden relative z-[99999] w-10 h-10 flex items-center justify-center rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm"
         whileTap={{ scale: 0.95 }}
       >
         <div className="flex flex-col gap-[5px] justify-center items-center">
@@ -78,7 +78,7 @@ const BurgerMenu = () => {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
               onClick={closeMenu}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9998] md:hidden"
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[99997] md:hidden"
             />
 
             {/* Menu Panel */}
@@ -87,7 +87,7 @@ const BurgerMenu = () => {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 h-full w-[280px] z-[10000] md:hidden"
+              className="fixed top-0 right-0 h-full w-[280px] z-[99998] md:hidden"
               style={{
                 background: "linear-gradient(180deg, rgba(10,10,20,0.98), rgba(20,20,35,0.98))",
                 borderLeft: "1px solid rgba(255,255,255,0.1)",
