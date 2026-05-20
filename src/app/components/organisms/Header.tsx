@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from "react";
 import BurgerMenu from "../molecules/BurgerMenu";
 import Logo from "../atoms/Logo";
-import { DesctopHeader } from "../molecules/DesctopHeader";
 import Button from "../atoms/Button";
+import { DesctopHeader } from "../molecules/DesctopHeader";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
