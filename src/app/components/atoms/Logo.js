@@ -1,25 +1,31 @@
 "use client";
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 const Logo = () => {
+  const [rotate, setRotate] = useState(false);
+
+  useEffect(() => {
+    setRotate(true);
+  }, []);
+
   return (
-    <a href="#home" className="cursor-pointer group" aria-label="Go to top of page">
+    <a href="#home" className="cursor-pointer" aria-label="Go to top of page">
       <motion.svg
         aria-label="Website Logo"
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 50 50"
-        width="44"
-        height="44"
+        viewBox="50 30 40 40"
+        width="50"
+        height="50"
         role="img"
         aria-labelledby="logoTitle"
-        className="md:w-[50px] md:h-[50px]"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
       >
         <title id="logoTitle">SkillWill Logo</title>
+        <desc id="logoDesc">
+          An animated logo of SkillWill, rotating with a path design
+        </desc>
+
         <defs>
-          {/* Animated gradient definition */}
           <linearGradient id="animatedGradient" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#ff7e5f">
               <animate
@@ -46,8 +52,7 @@ const Logo = () => {
               />
             </stop>
           </linearGradient>
-          
-          {/* Glow filter */}
+
           <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur stdDeviation="2" result="coloredBlur" />
             <feMerge>
@@ -56,38 +61,28 @@ const Logo = () => {
             </feMerge>
           </filter>
         </defs>
-        
-        {/* Main logo path with animated gradient */}
+
         <motion.path
-          d="M10,25 L25,10 L25,40 Z M25,10 L40,25 L25,40 Z"
+          d="M55,50 L70,40 L70,60 Z"
           stroke="url(#animatedGradient)"
-          strokeWidth="3"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
+          strokeWidth="4"
+          fill="transparent"
           filter="url(#glow)"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 1.5, ease: "easeInOut" }}
-        />
-        
-        {/* Rotating outer ring */}
-        <motion.circle
-          cx="25"
-          cy="25"
-          r="22"
-          stroke="url(#animatedGradient)"
-          strokeWidth="1.5"
-          strokeDasharray="8 6"
-          fill="none"
-          opacity="0.6"
-          animate={{ rotate: 360 }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear"
+          initial={{ strokeDasharray: 99, strokeDashoffset: 0 }}
+          animate={{
+            strokeDasharray: 10,
+            strokeDashoffset: 0,
+            rotate: rotate ? 360 : 0,
           }}
-          style={{ transformOrigin: "center" }}
+          transition={{
+            duration: 1,
+            delay: 1.2,
+            rotate: {
+              repeat: Infinity,
+              duration: 20,
+              ease: "linear",
+            },
+          }}
         />
       </motion.svg>
     </a>
