@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState, useMemo, memo } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState, useMemo, memo, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const CODE_CONTENT = `// Welcome to my portfolio
 const developer = {
@@ -39,118 +39,73 @@ const FILE_TREE = [
   { name: "tsconfig.json", type: "file", indent: 0 },
 ];
 
-// Token types for syntax highlighting
-type TokenType = 'keyword' | 'string' | 'comment' | 'property' | 'number' | 'punctuation' | 'default';
-
-interface Token {
-  type: TokenType;
-  value: string;
-}
+type TokenType = "keyword" | "string" | "comment" | "property" | "number" | "punctuation" | "default";
+interface Token { type: TokenType; value: string; }
 
 const tokenColors: Record<TokenType, string> = {
-  keyword: 'text-pink-400',
-  string: 'text-emerald-300',
-  comment: 'text-emerald-400/70',
-  property: 'text-cyan-300',
-  number: 'text-amber-300',
-  punctuation: 'text-slate-400',
-  default: 'text-slate-300',
+  keyword:     "text-[#f97583]",
+  string:      "text-[#9ecbff]",
+  comment:     "text-[#6a737d]",
+  property:    "text-[#79b8ff]",
+  number:      "text-[#ffab70]",
+  punctuation: "text-[#e1e4e8]/50",
+  default:     "text-[#e1e4e8]",
 };
 
 function tokenizeLine(line: string): Token[] {
   const tokens: Token[] = [];
   let remaining = line;
-  
   while (remaining.length > 0) {
-    // Comments
     const commentMatch = remaining.match(/^(\/\/.*)$/);
-    if (commentMatch) {
-      tokens.push({ type: 'comment', value: commentMatch[1] });
-      remaining = remaining.slice(commentMatch[1].length);
-      continue;
-    }
-    
-    // Keywords
+    if (commentMatch) { tokens.push({ type: "comment", value: commentMatch[1] }); remaining = remaining.slice(commentMatch[1].length); continue; }
     const keywordMatch = remaining.match(/^(const|let|var|function|return|export|default)\b/);
-    if (keywordMatch) {
-      tokens.push({ type: 'keyword', value: keywordMatch[1] });
-      remaining = remaining.slice(keywordMatch[1].length);
-      continue;
-    }
-    
-    // Strings
+    if (keywordMatch) { tokens.push({ type: "keyword", value: keywordMatch[1] }); remaining = remaining.slice(keywordMatch[1].length); continue; }
     const stringMatch = remaining.match(/^"([^"]*)"/);
-    if (stringMatch) {
-      tokens.push({ type: 'string', value: stringMatch[0] });
-      remaining = remaining.slice(stringMatch[0].length);
-      continue;
-    }
-    
-    // Property keys (word followed by colon)
+    if (stringMatch) { tokens.push({ type: "string", value: stringMatch[0] }); remaining = remaining.slice(stringMatch[0].length); continue; }
     const propertyMatch = remaining.match(/^(\w+)(?=\s*:)/);
-    if (propertyMatch) {
-      tokens.push({ type: 'property', value: propertyMatch[1] });
-      remaining = remaining.slice(propertyMatch[1].length);
-      continue;
-    }
-    
-    // Numbers
+    if (propertyMatch) { tokens.push({ type: "property", value: propertyMatch[1] }); remaining = remaining.slice(propertyMatch[1].length); continue; }
     const numberMatch = remaining.match(/^\d+/);
-    if (numberMatch) {
-      tokens.push({ type: 'number', value: numberMatch[0] });
-      remaining = remaining.slice(numberMatch[0].length);
-      continue;
-    }
-    
-    // Punctuation
-    const punctMatch = remaining.match(/^[{}[\],;:()=>]+/);
-    if (punctMatch) {
-      tokens.push({ type: 'punctuation', value: punctMatch[0] });
-      remaining = remaining.slice(punctMatch[0].length);
-      continue;
-    }
-    
-    // Default: take one character or word
+    if (numberMatch) { tokens.push({ type: "number", value: numberMatch[0] }); remaining = remaining.slice(numberMatch[0].length); continue; }
+    const punctMatch = remaining.match(/^[{}[\],;:()=>+]+/);
+    if (punctMatch) { tokens.push({ type: "punctuation", value: punctMatch[0] }); remaining = remaining.slice(punctMatch[0].length); continue; }
     const defaultMatch = remaining.match(/^(\s+|\w+|.)/);
-    if (defaultMatch) {
-      tokens.push({ type: 'default', value: defaultMatch[0] });
-      remaining = remaining.slice(defaultMatch[0].length);
-    } else {
-      break;
-    }
+    if (defaultMatch) { tokens.push({ type: "default", value: defaultMatch[0] }); remaining = remaining.slice(defaultMatch[0].length); }
+    else break;
   }
-  
   return tokens;
 }
 
-// Memoized line component for performance
-const CodeLine = memo(({ 
-  line, 
-  lineNumber, 
-  isVisible 
-}: { 
-  line: string; 
-  lineNumber: number;
-  isVisible: boolean;
+const CodeLine = memo(({
+  line, lineNumber, isTyped, isTyping, typedChars,
+}: {
+  line: string; lineNumber: number; isTyped: boolean; isTyping: boolean; typedChars: number;
 }) => {
-  const tokens = useMemo(() => tokenizeLine(line), [line]);
+  const fullTokens = useMemo(() => tokenizeLine(line), [line]);
+  const displayLine = isTyped ? line : isTyping ? line.slice(0, typedChars) : "";
+  const displayTokens = useMemo(() => tokenizeLine(displayLine), [displayLine]);
+
+  if (!isTyped && !isTyping) return null;
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: -10 }}
-      animate={isVisible ? { opacity: 1, x: 0 } : {}}
-      transition={{ delay: lineNumber * 0.03, duration: 0.3 }}
-      className="flex hover:bg-white/5 group"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="flex group min-h-[1.5em] hover:bg-white/[0.03] rounded-sm transition-colors"
     >
-      <span className="w-8 md:w-12 text-right pr-2 md:pr-4 text-slate-600 select-none text-[10px] md:text-xs shrink-0">
+      <span className="w-8 md:w-10 text-right pr-3 text-[#3d4451] select-none text-[10px] md:text-xs shrink-0 leading-6 font-mono">
         {lineNumber}
       </span>
-      <code className="text-[10px] md:text-xs lg:text-sm whitespace-pre">
-        {tokens.length > 0 ? tokens.map((token, i) => (
-          <span key={i} className={tokenColors[token.type]}>
-            {token.value}
-          </span>
-        )) : <span>&nbsp;</span>}
+      <code className="text-[10px] md:text-[11px] lg:text-xs whitespace-pre leading-6 font-mono flex-1">
+        {displayTokens.map((token, i) => (
+          <span key={i} className={tokenColors[token.type]}>{token.value}</span>
+        ))}
+        {isTyping && (
+          <motion.span
+            animate={{ opacity: [1, 0] }}
+            transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
+            className="inline-block w-[2px] h-[1em] bg-[#79b8ff] align-middle ml-[1px]"
+          />
+        )}
       </code>
     </motion.div>
   );
@@ -159,105 +114,174 @@ const CodeLine = memo(({
 CodeLine.displayName = "CodeLine";
 
 export function VSCodeHero() {
-  const [isVisible, setIsVisible] = useState(false);
   const codeLines = useMemo(() => CODE_CONTENT.split("\n"), []);
+  const [currentLine, setCurrentLine] = useState(0);
+  const [currentChar, setCurrentChar] = useState(0);
+  const [done, setDone] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
+  // Typewriter effect
   useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 100);
-    return () => clearTimeout(timer);
-  }, []);
+    if (done) return;
+    const line = codeLines[currentLine] ?? "";
+
+    if (currentChar < line.length) {
+      const speed = line[currentChar] === " " ? 18 : Math.random() * 22 + 14;
+      const t = setTimeout(() => setCurrentChar((c) => c + 1), speed);
+      return () => clearTimeout(t);
+    } else {
+      if (currentLine < codeLines.length - 1) {
+        const t = setTimeout(() => {
+          setCurrentLine((l) => l + 1);
+          setCurrentChar(0);
+        }, line.length === 0 ? 60 : 80);
+        return () => clearTimeout(t);
+      } else {
+        setDone(true);
+      }
+    }
+  }, [currentLine, currentChar, codeLines, done]);
+
+  // Auto-scroll
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [currentLine]);
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="w-full h-[280px] md:h-[380px] lg:h-[420px] xl:h-[460px] rounded-lg overflow-hidden border border-white/10 bg-[#1e1e2e] shadow-2xl shadow-black/50"
+      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      className="relative w-full"
     >
-      {/* Title Bar */}
-      <div className="flex items-center justify-between px-2 md:px-4 py-1.5 md:py-2 bg-[#181825] border-b border-white/5">
-        <div className="flex items-center gap-1.5 md:gap-2">
-          <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-red-500/80" />
-          <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-yellow-500/80" />
-          <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-green-500/80" />
-        </div>
-        <span className="text-[10px] md:text-xs text-slate-500 font-mono">portfolio - VS Code</span>
-        <div className="w-12 md:w-16" />
-      </div>
+      {/* Ambient glow */}
+      <div className="absolute -inset-[1px] rounded-xl bg-gradient-to-br from-[#79b8ff]/20 via-transparent to-[#f97583]/10 blur-sm pointer-events-none" />
+      <div className="absolute -inset-8 rounded-2xl bg-[#79b8ff]/5 blur-2xl pointer-events-none" />
 
-      <div className="flex h-[calc(100%-28px)] md:h-[calc(100%-36px)]">
-        {/* Sidebar - Hidden on mobile */}
-        <div className="hidden md:block w-44 lg:w-52 bg-[#181825] border-r border-white/5 overflow-hidden">
-          <div className="p-2 text-[10px] lg:text-xs text-slate-500 uppercase tracking-wider font-medium">
-            Explorer
+      <div className="relative w-full h-[300px] md:h-[390px] lg:h-[430px] rounded-xl overflow-hidden border border-[#30363d] bg-[#0d1117] shadow-2xl shadow-black/70">
+
+        {/* Scanline overlay */}
+        <div
+          className="absolute inset-0 pointer-events-none z-10 opacity-[0.025]"
+          style={{
+            backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(255,255,255,0.15) 1px, rgba(255,255,255,0.15) 2px)",
+            backgroundSize: "100% 2px",
+          }}
+        />
+
+        {/* Title Bar */}
+        <div className="flex items-center justify-between px-3 md:px-4 py-2 bg-[#010409] border-b border-[#21262d]">
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 rounded-full bg-[#ff5f57] shadow-[0_0_6px_#ff5f57aa]" />
+            <div className="w-3 h-3 rounded-full bg-[#ffbd2e] shadow-[0_0_6px_#ffbd2eaa]" />
+            <div className="w-3 h-3 rounded-full bg-[#28c840] shadow-[0_0_6px_#28c840aa]" />
           </div>
-          <div className="px-1">
-            {FILE_TREE.map((item, i) => (
-              <div
-                key={i}
-                className={`flex items-center gap-1.5 py-0.5 px-2 text-[10px] lg:text-xs rounded cursor-pointer transition-colors ${
-                  item.active 
-                    ? "bg-cyan-500/20 text-cyan-300" 
-                    : "text-slate-400 hover:bg-white/5"
-                }`}
-                style={{ paddingLeft: `${(item.indent || 0) * 12 + 8}px` }}
-              >
-                {item.type === "folder" ? (
-                  <svg className="w-3 h-3 lg:w-4 lg:h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
-                  </svg>
-                ) : (
-                  <svg className="w-3 h-3 lg:w-4 lg:h-4 text-cyan-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
-                  </svg>
-                )}
-                <span className="truncate">{item.name}</span>
-              </div>
-            ))}
+          <div className="flex items-center gap-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_4px_#34d399]" />
+            <span className="text-[10px] md:text-xs text-[#8b949e] font-mono tracking-wide">portfolio — VS Code</span>
           </div>
+          <div className="w-16" />
         </div>
 
-        {/* Main Editor Area */}
-        <div className="flex-1 flex flex-col overflow-hidden">
-          {/* Tabs */}
-          <div className="flex bg-[#181825] border-b border-white/5 overflow-x-auto">
-            {TABS.map((tab, i) => (
-              <div
-                key={i}
-                className={`flex items-center gap-1.5 px-2 md:px-3 py-1.5 md:py-2 text-[10px] md:text-xs border-r border-white/5 cursor-pointer whitespace-nowrap ${
-                  tab.active
-                    ? "bg-[#1e1e2e] text-white border-t-2 border-t-cyan-500"
-                    : "text-slate-500 hover:bg-white/5"
-                }`}
-              >
-                <span className={tab.icon === "ts" ? "text-cyan-400" : tab.icon === "json" ? "text-amber-400" : "text-slate-400"}>
-                  {tab.icon === "ts" ? "TS" : tab.icon === "json" ? "{}" : "#"}
+        <div className="flex h-[calc(100%-36px)]">
+
+          {/* Sidebar */}
+          <div className="hidden md:flex flex-col w-44 lg:w-48 bg-[#010409] border-r border-[#21262d]">
+            <div className="px-3 py-2 text-[9px] text-[#8b949e]/60 uppercase tracking-[0.15em] font-semibold">
+              Explorer
+            </div>
+            <div className="flex-1 overflow-hidden px-1">
+              {FILE_TREE.map((item, i) => (
+                <div
+                  key={i}
+                  className={`flex items-center gap-1.5 py-[3px] text-[10px] lg:text-[11px] rounded cursor-pointer transition-all duration-150 ${
+                    item.active
+                      ? "bg-[#79b8ff]/10 text-[#79b8ff]"
+                      : "text-[#8b949e] hover:text-[#c9d1d9] hover:bg-white/[0.04]"
+                  }`}
+                  style={{ paddingLeft: `${(item.indent || 0) * 10 + 8}px` }}
+                >
+                  {item.type === "folder" ? (
+                    <svg className="w-3 h-3 shrink-0 text-[#e3b341]" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
+                    </svg>
+                  ) : (
+                    <svg className={`w-3 h-3 shrink-0 ${item.active ? "text-[#79b8ff]" : "text-[#8b949e]"}`} fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
+                    </svg>
+                  )}
+                  <span className="truncate font-mono">{item.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Editor */}
+          <div className="flex-1 flex flex-col overflow-hidden">
+
+            {/* Tabs */}
+            <div className="flex bg-[#010409] border-b border-[#21262d] overflow-x-auto">
+              {TABS.map((tab, i) => (
+                <div
+                  key={i}
+                  className={`relative flex items-center gap-1.5 px-3 md:px-4 py-2 text-[10px] md:text-[11px] border-r border-[#21262d] cursor-pointer whitespace-nowrap font-mono transition-colors ${
+                    tab.active
+                      ? "bg-[#0d1117] text-[#e1e4e8]"
+                      : "text-[#8b949e] hover:text-[#c9d1d9] hover:bg-white/[0.03]"
+                  }`}
+                >
+                  {tab.active && (
+                    <motion.div
+                      layoutId="activeTab"
+                      className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-[#79b8ff] to-[#f97583]"
+                    />
+                  )}
+                  <span className={
+                    tab.icon === "ts" ? "text-[#79b8ff] font-bold text-[9px]" :
+                    tab.icon === "json" ? "text-[#e3b341] text-[9px]" :
+                    "text-[#8b949e] text-[9px]"
+                  }>
+                    {tab.icon === "ts" ? "TS" : tab.icon === "json" ? "{}" : "#"}
+                  </span>
+                  {tab.name}
+                </div>
+              ))}
+            </div>
+
+            {/* Code area */}
+            <div
+              ref={scrollRef}
+              className="flex-1 overflow-auto py-3 px-1 md:px-2 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-[#30363d]"
+            >
+              {codeLines.map((line, i) => (
+                <CodeLine
+                  key={i}
+                  line={line}
+                  lineNumber={i + 1}
+                  isTyped={done || i < currentLine}
+                  isTyping={!done && i === currentLine}
+                  typedChars={i === currentLine ? currentChar : 0}
+                />
+              ))}
+            </div>
+
+            {/* Status bar */}
+            <div className="flex items-center justify-between px-3 md:px-4 py-1 bg-[#010409] border-t border-[#21262d]">
+              <div className="flex items-center gap-3 text-[9px] md:text-[10px] text-[#8b949e] font-mono">
+                <span className="flex items-center gap-1.5">
+                  <span className={`w-1.5 h-1.5 rounded-full ${done ? "bg-emerald-400 shadow-[0_0_4px_#34d399]" : "bg-amber-400 shadow-[0_0_4px_#fbbf24] animate-pulse"}`} />
+                  {done ? "Ready" : "Typing…"}
                 </span>
-                {tab.name}
+                <span className="hidden sm:inline text-[#8b949e]/60">TypeScript</span>
               </div>
-            ))}
-          </div>
-
-          {/* Code Content */}
-          <div className="flex-1 overflow-auto p-2 md:p-4 font-mono leading-relaxed custom-scrollbar">
-            {codeLines.map((line, i) => (
-              <CodeLine key={i} line={line} lineNumber={i + 1} isVisible={isVisible} />
-            ))}
-          </div>
-
-          {/* Status Bar */}
-          <div className="flex items-center justify-between px-2 md:px-4 py-1 bg-[#181825] border-t border-white/5 text-[8px] md:text-[10px] text-slate-500">
-            <div className="flex items-center gap-2 md:gap-4">
-              <span className="flex items-center gap-1">
-                <span className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-emerald-500" />
-                Ready
-              </span>
-              <span className="hidden sm:inline">TypeScript</span>
+              <div className="flex items-center gap-3 text-[9px] md:text-[10px] text-[#8b949e]/60 font-mono">
+                <span>Ln {currentLine + 1}</span>
+                <span className="hidden sm:inline">UTF-8</span>
+              </div>
             </div>
-            <div className="flex items-center gap-2 md:gap-4">
-              <span>Ln 1, Col 1</span>
-              <span className="hidden sm:inline">UTF-8</span>
-            </div>
+
           </div>
         </div>
       </div>
