@@ -89,7 +89,7 @@ const Skills = () => {
                     text-xs sm:text-sm font-medium
                     backdrop-blur-sm
                     hover:scale-105 hover:brightness-125
-                    transition-transform transition-[filter] duration-200
+                    transition-transform duration-200
                     cursor-default select-none
                     ${color}
                   `}
