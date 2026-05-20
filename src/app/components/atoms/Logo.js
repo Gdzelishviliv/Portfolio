@@ -24,11 +24,50 @@ const Logo = () => {
         <desc id="logoDesc">
           An animated logo of SkillWill, rotating with a path design
         </desc>
+
+        <defs>
+          <linearGradient id="animatedGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#ff7e5f">
+              <animate
+                attributeName="stop-color"
+                values="#ff7e5f;#feb47b;#6a11cb;#2575fc;#ff7e5f"
+                dur="4s"
+                repeatCount="indefinite"
+              />
+            </stop>
+            <stop offset="50%" stopColor="#6a11cb">
+              <animate
+                attributeName="stop-color"
+                values="#6a11cb;#2575fc;#ff7e5f;#feb47b;#6a11cb"
+                dur="4s"
+                repeatCount="indefinite"
+              />
+            </stop>
+            <stop offset="100%" stopColor="#2575fc">
+              <animate
+                attributeName="stop-color"
+                values="#2575fc;#ff7e5f;#feb47b;#6a11cb;#2575fc"
+                dur="4s"
+                repeatCount="indefinite"
+              />
+            </stop>
+          </linearGradient>
+
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
         <motion.path
           d="M55,50 L70,40 L70,60 Z"
-          stroke="white"
+          stroke="url(#animatedGradient)"
           strokeWidth="4"
           fill="transparent"
+          filter="url(#glow)"
           initial={{ strokeDasharray: 99, strokeDashoffset: 0 }}
           animate={{
             strokeDasharray: 10,
