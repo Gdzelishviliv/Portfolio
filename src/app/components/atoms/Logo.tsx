@@ -1,8 +1,8 @@
 "use client";
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
-const Logo = () => {
+const Logo: React.FC = () => {
   const [rotate, setRotate] = useState(false);
 
   useEffect(() => {
@@ -21,9 +21,7 @@ const Logo = () => {
         aria-labelledby="logoTitle"
       >
         <title id="logoTitle">SkillWill Logo</title>
-        <desc id="logoDesc">
-          An animated logo of SkillWill, rotating with a path design
-        </desc>
+        <desc id="logoDesc">An animated logo of SkillWill, rotating with a path design</desc>
 
         <defs>
           <linearGradient id="animatedGradient" x1="0%" y1="0%" x2="100%" y2="100%">

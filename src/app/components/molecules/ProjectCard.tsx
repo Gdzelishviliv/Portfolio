@@ -6,7 +6,7 @@ import React from 'react'
 
 const ProjectCard = ({ project, index }: { project: ProjectsProps; index: number }) => {
     const imageSizes = "(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw";
-    const isLcpCandidate = index === 2 || project.title.toLowerCase().includes("planets");
+    const isLcpCandidate = index < 2;
 
     return (
         <motion.a

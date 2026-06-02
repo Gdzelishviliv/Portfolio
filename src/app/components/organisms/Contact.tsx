@@ -128,28 +128,30 @@ export function Contact() {
             />
           </div>
 
-          {status.type && (
-            <Alert
-              className={
-                status.type === "success"
-                  ? "border-green-200 bg-green-50"
-                  : "border-red-200 bg-red-50"
-              }
-            >
-              {status.type === "success" ? (
-                <CheckCircle className="h-4 w-4 text-green-600" />
-              ) : (
-                <AlertCircle className="h-4 w-4 text-red-600" />
-              )}
-              <AlertDescription
+          <div className="min-h-[56px]">
+            {status.type && (
+              <Alert
                 className={
-                  status.type === "success" ? "text-green-800" : "text-red-800"
+                  status.type === "success"
+                    ? "border-green-200 bg-green-50"
+                    : "border-red-200 bg-red-50"
                 }
               >
-                {status.message}
-              </AlertDescription>
-            </Alert>
-          )}
+                {status.type === "success" ? (
+                  <CheckCircle className="h-4 w-4 text-green-600" />
+                ) : (
+                  <AlertCircle className="h-4 w-4 text-red-600" />
+                )}
+                <AlertDescription
+                  className={
+                    status.type === "success" ? "text-green-800" : "text-red-800"
+                  }
+                >
+                  {status.message}
+                </AlertDescription>
+              </Alert>
+            )}
+          </div>
 
           <Button
             type="submit"

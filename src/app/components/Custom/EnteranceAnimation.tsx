@@ -5,23 +5,26 @@ export default function Effect() {
   return (
     <>
       <motion.div
-        initial={{ x: "100%", width: "100%" }}
-        animate={{ x: "0%", width: "0%" }}
+        initial={{ x: 0 }}
+        animate={{ x: "100%" }}
         transition={{ duration: 2, ease: "easeInOut" }}
-        className="fixed top-0 bottom-0 right-full w-screen h-screen z-[9999] bg-[#000000]"
-      ></motion.div>
+        className="fixed inset-0 w-full h-full z-[9999] bg-[#000000] pointer-events-none will-change-transform"
+        style={{ transform: "translateX(0%)" }}
+      />
       <motion.div
-        initial={{ x: "100%", width: "100%" }}
-        animate={{ x: "0%", width: "0%" }}
+        initial={{ x: 0 }}
+        animate={{ x: "100%" }}
         transition={{ duration: 1.7, ease: "easeInOut" }}
-        className="fixed top-0 bottom-0 right-full w-screen h-screen z-[9999] bg-[#ffffff]"
-      ></motion.div>
+        className="fixed inset-0 w-full h-full z-[9999] bg-[#ffffff] pointer-events-none will-change-transform"
+        style={{ transform: "translateX(0%)" }}
+      />
       <motion.div
-        initial={{ x: "100%", width: "100%" }}
-        animate={{ x: "0%", width: "0%" }}
+        initial={{ x: 0 }}
+        animate={{ x: "100%" }}
         transition={{ duration: 1, ease: "easeInOut" }}
-        className="fixed top-0 bottom-0 right-full w-screen h-screen z-[9999] bg-[#000000]"
-      ></motion.div>
+        className="fixed inset-0 w-full h-full z-[9999] bg-[#000000] pointer-events-none will-change-transform"
+        style={{ transform: "translateX(0%)" }}
+      />
     </>
   );
 }

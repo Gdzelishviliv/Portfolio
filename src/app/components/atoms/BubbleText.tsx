@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useMemo, useState } from "react";
 const TEXT =
   "a passionate Full Stack Web Developer with 2 years of experience in building dynamic and scalable web applications. I specialize in both front-end and back-end development, working with modern technologies to create seamless, user-friendly, and performance-driven solutions.";
 
-const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+const CHARS = "10";
 const SCRAMBLE_INTERVAL = 50; // Slower scramble rate for performance
 const WORD_PAUSE_MS = 30;
 const FLARE_CHANCE = 0.001; // Reduced flare chance

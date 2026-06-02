@@ -474,7 +474,7 @@ export function VSCodeHero() {
           <div className="flex items-center gap-1.5 sm:gap-2">
             <div className={`w-1.5 h-1.5 rounded-full ${state.done?"bg-emerald-400 shadow-[0_0_4px_#34d399]":"bg-amber-400 shadow-[0_0_4px_#fbbf24] animate-pulse"}`}/>
             <span className="text-[9px] sm:text-[10px] md:text-xs text-[#8b949e] font-mono tracking-wide truncate max-w-[120px] sm:max-w-none">
-              Ivane's Portfolio
+              {"Ivane\u2019s Portfolio"}
             </span>
           </div>
           {/* Game button — always visible */}

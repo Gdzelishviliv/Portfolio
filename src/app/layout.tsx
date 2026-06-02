@@ -45,6 +45,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${rancho.variable} ${vt323.variable}`}>
+      <head>
+      </head>
       <body className="max-w-[1920px] m-auto min-h-screen p-0 relative bg-background">
         <AppShell>{children}</AppShell>
       </body>

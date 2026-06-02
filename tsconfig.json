@@ -34,7 +34,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/types/particles.d.ts",
-    "src/app/components/atoms/Logo.js",
+    "src/app/components/atoms/Logo.tsx",
     "src/app/components/Custom/Canvas.tsx",
     ".next/dev/types/**/*.ts"
   ],

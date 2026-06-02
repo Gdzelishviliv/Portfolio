@@ -19,7 +19,7 @@ export default function AppShell({ children }: AppShellProps) {
     <>
       <Header />
       <Effect />
-      {children}
+      <main>{children}</main>
       <FloatingCVButton />
       <Footer />
     </>

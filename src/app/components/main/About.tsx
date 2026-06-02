@@ -31,7 +31,7 @@ const About = () => {
 
         {/* VS Code Hero block */}
         <div className={`flex justify-center items-start ${isMd ? "md:flex-1" : "w-full max-w-[320px] mx-auto"}`}>
-          <div className={`w-full ${isMd ? "max-w-md lg:max-w-lg xl:max-w-xl" : "max-w-[320px]"}`}>
+          <div className={`w-full min-h-[320px] sm:min-h-[370px] md:min-h-[400px] lg:min-h-[440px] ${isMd ? "max-w-md lg:max-w-lg xl:max-w-xl" : "max-w-[320px]"}`}>
             <CreativeHeroWrapper />
           </div>
         </div>

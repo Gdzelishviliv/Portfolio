@@ -7,7 +7,7 @@ export const CreativeHeroWrapper = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="w-full h-[280px] md:h-[380px] lg:h-[420px] xl:h-[460px] rounded-lg border border-white/10 bg-[#1e1e2e]" />
+      <div className="w-full h-[320px] sm:h-[370px] md:h-[400px] lg:h-[440px] rounded-lg border border-white/10 bg-[#1e1e2e]" />
     ),
   }
 );
