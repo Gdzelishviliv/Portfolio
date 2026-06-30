@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useMemo, useState } from "react";
 
 const TEXT =
-  "a passionate Full Stack Web Developer with 2 years of experience in building dynamic and scalable web applications. I specialize in both front-end and back-end development, working with modern technologies to create seamless, user-friendly, and performance-driven solutions.";
+  "3+ years of experience building modern, scalable web applications. I specialize in creating responsive user interfaces, designing robust backend APIs, integrating complex REST services, and implementing secure payment solutions. Passionate about clean architecture, performance optimization, and building production-ready software that delivers exceptional user experiences.";
 
 const CHARS = "10";
 const SCRAMBLE_INTERVAL = 50; // Slower scramble rate for performance
