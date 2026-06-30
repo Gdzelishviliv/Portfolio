@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 const items = [
   "React",
   "Next.js",
+  "Svelte",
   "TypeScript",
   "JavaScript",
   "Tailwind CSS",

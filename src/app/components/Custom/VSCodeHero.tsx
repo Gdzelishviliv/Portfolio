@@ -456,6 +456,40 @@ export function VSCodeHero() {
 
       {/* Card */}
       <div className="relative w-full h-[320px] sm:h-[370px] md:h-[400px] lg:h-[440px] rounded-xl overflow-hidden border border-[#30363d] bg-[#0d1117] shadow-2xl shadow-black/70">
+        {/* Snake hint */}
+        <motion.div
+          initial={{ opacity: 0, y: -8, x: 8 }}
+          animate={{ opacity: 1, y: 0, x: 0 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="pointer-events-none absolute -top-10 right-2 z-20 hidden sm:block"
+        >
+          <div className="flex items-start gap-1.5">
+            <div className="mt-3 rounded-full border border-[#79b8ff]/25 bg-[#010409]/90 px-3 py-1 text-[10px] sm:text-[11px] font-mono tracking-wide text-[#c9d1d9] shadow-lg shadow-black/30 backdrop-blur-sm whitespace-nowrap">
+              mini snake game
+            </div>
+            <svg
+              className="h-12 w-20 text-[#c9d1d9]"
+              viewBox="0 0 80 48"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M2 14C18 2 32 2 42 12C52 22 48 34 60 34C68 34 72 28 78 20"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M72 18L78 20L73 25"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+        </motion.div> 
 
         {/* Scanlines */}
         <div className="absolute inset-0 pointer-events-none z-10 opacity-[0.02]"

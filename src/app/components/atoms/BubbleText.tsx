@@ -31,6 +31,10 @@ const BubbleText = () => {
   }, []);
 
   useEffect(() => {
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+
+    if (isMobile) return;
+
     const container = containerRef.current;
     if (!container) return;
 
@@ -135,8 +139,10 @@ const BubbleText = () => {
   return (
     <p
       ref={containerRef}
-      className="text-[15px] md:text-[17px] lg:text-lg w-full font-thin mt-2 font-mono leading-relaxed"
-    />
+      className="bubble-text text-[15px] md:text-[17px] lg:text-lg w-full font-thin mt-2 font-mono leading-relaxed"
+    >
+      {TEXT}
+    </p>
   );
 };
 
