@@ -74,7 +74,7 @@ const Logo: React.FC = () => {
           }}
           transition={{
             duration: 1,
-            delay: 1.2,
+            delay: 0.3,
             rotate: {
               repeat: Infinity,
               duration: 20,

@@ -12,7 +12,7 @@ const About = () => {
       id="about"
       className="px-4 pt-8 pb-4 relative md:px-8 md:pt-12 lg:px-24 lg:pt-16"
     >
-      <div className="flex flex-col gap-6 md:flex-row md:items-center md:gap-8 lg:gap-12 xl:gap-16">
+      <div className="flex flex-col gap-12 md:flex-row md:items-center md:gap-10 lg:gap-14 xl:gap-16">
         {/* Text block */}
         <div className={`flex flex-col ${isMd ? "md:flex-1 lg:max-w-md xl:max-w-lg" : "items-center text-center"}`}>
           <h1 className={`text-white tracking-widest font-main ${isMd ? "text-3xl lg:text-4xl xl:text-5xl" : "text-xl"}`}>

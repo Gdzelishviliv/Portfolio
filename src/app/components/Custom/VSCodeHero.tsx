@@ -454,43 +454,47 @@ export function VSCodeHero() {
       <div className="absolute -inset-[1px] rounded-xl bg-gradient-to-br from-[#79b8ff]/20 via-transparent to-[#f97583]/10 blur-sm pointer-events-none"/>
       <div className="absolute -inset-8 rounded-2xl bg-[#79b8ff]/5 blur-2xl pointer-events-none"/>
 
+      {/* Snake game pointer — sits OUTSIDE the card so it isn't clipped */}
+      <motion.div
+        initial={{ opacity: 0, y: 6 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 1.4, ease: [0.16, 1, 0.3, 1] }}
+        className="pointer-events-none absolute -top-12 right-8 z-30 flex items-end gap-1"
+      >
+        {/* Curly arrow pointing down to the 🐍 button */}
+        <motion.svg
+          animate={{ y: [0, 4, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          className="h-12 w-12 text-[#79b8ff]"
+          viewBox="0 0 60 60"
+          fill="none"
+          aria-hidden="true"
+        >
+          <motion.path
+            d="M6 8C2 20 8 30 20 30C32 30 34 18 28 14C24 11 20 16 24 22C29 30 40 34 46 48"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 1, delay: 0.5, ease: "easeInOut" }}
+          />
+          <motion.path
+            d="M38 46L46 50L49 41"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 1 }}
+            transition={{ duration: 0.4, delay: 1.4, ease: "easeInOut" }}
+          />
+        </motion.svg>
+      </motion.div>
+
       {/* Card */}
       <div className="relative w-full h-[320px] sm:h-[370px] md:h-[400px] lg:h-[440px] rounded-xl overflow-hidden border border-[#30363d] bg-[#0d1117] shadow-2xl shadow-black/70">
-        {/* Snake hint */}
-        <motion.div
-          initial={{ opacity: 0, y: -8, x: 8 }}
-          animate={{ opacity: 1, y: 0, x: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="pointer-events-none absolute -top-10 right-2 z-20 hidden sm:block"
-        >
-          <div className="flex items-start gap-1.5">
-            <div className="mt-3 rounded-full border border-[#79b8ff]/25 bg-[#010409]/90 px-3 py-1 text-[10px] sm:text-[11px] font-mono tracking-wide text-[#c9d1d9] shadow-lg shadow-black/30 backdrop-blur-sm whitespace-nowrap">
-              mini snake game
-            </div>
-            <svg
-              className="h-12 w-20 text-[#c9d1d9]"
-              viewBox="0 0 80 48"
-              fill="none"
-              aria-hidden="true"
-            >
-              <path
-                d="M2 14C18 2 32 2 42 12C52 22 48 34 60 34C68 34 72 28 78 20"
-                stroke="currentColor"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M72 18L78 20L73 25"
-                stroke="currentColor"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </div>
-        </motion.div> 
-
         {/* Scanlines */}
         <div className="absolute inset-0 pointer-events-none z-10 opacity-[0.02]"
           style={{backgroundImage:"repeating-linear-gradient(0deg,transparent,transparent 1px,rgba(255,255,255,.15) 1px,rgba(255,255,255,.15) 2px)",backgroundSize:"100% 2px"}}/>
