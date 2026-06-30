@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import AppShell from "./components/organisms/AppShell";
 import { Rancho, VT323 } from "next/font/google";
+import SmoothScroll from "./components/Custom/SmoothScroll";
 
 const rancho = Rancho({
   subsets: ["latin"],
@@ -48,7 +49,10 @@ export default function RootLayout({
       <head>
       </head>
       <body className="max-w-[1920px] m-auto min-h-screen p-0 relative bg-background">
-        <AppShell>{children}</AppShell>
+        <AppShell>
+          <SmoothScroll/>
+          {children}
+        </AppShell>
       </body>
     </html>
   );
