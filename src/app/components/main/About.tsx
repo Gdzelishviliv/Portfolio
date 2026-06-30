@@ -10,7 +10,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="px-4 pt-8 pb-4 relative md:px-8 md:pt-12 lg:px-24 lg:pt-16"
+      className="px-4 pt-8 pb-4 relative overflow-x-clip md:px-8 md:pt-12 lg:px-24 lg:pt-16"
     >
       <div className="flex flex-col gap-6 md:flex-row md:items-center md:gap-8 lg:gap-12 xl:gap-16">
         {/* Text block */}
@@ -30,8 +30,8 @@ const About = () => {
         </div>
 
         {/* VS Code Hero block */}
-        <div className={`flex justify-center items-start ${isMd ? "md:flex-1" : "w-full max-w-[320px] mx-auto"}`}>
-          <div className={`w-full min-h-[320px] sm:min-h-[370px] md:min-h-[400px] lg:min-h-[440px] ${isMd ? "max-w-md lg:max-w-lg xl:max-w-xl" : "max-w-[320px]"}`}>
+        <div className={`flex justify-center items-start ${isMd ? "md:flex-1" : "w-full"}`}>
+          <div className={`w-full min-h-[320px] sm:min-h-[370px] md:min-h-[400px] lg:min-h-[440px] ${isMd ? "max-w-md lg:max-w-lg xl:max-w-xl" : ""} pt-12 md:pt-0`}>
             <CreativeHeroWrapper />
           </div>
         </div>
