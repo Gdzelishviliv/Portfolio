@@ -12,9 +12,9 @@ const About = () => {
       id="about"
       className="px-4 pt-8 pb-4 relative md:px-8 md:pt-12 lg:px-24 lg:pt-16"
     >
-      <div className="flex flex-col gap-12 md:flex-row md:items-center md:gap-10 lg:gap-14 xl:gap-16">
+      <div className="flex flex-col gap-12 lg:flex-row md:items-center md:gap-10 lg:gap-14 xl:gap-20">
         {/* Text block */}
-        <div className={`flex flex-col ${isMd ? "md:flex-1 lg:max-w-md xl:max-w-lg" : "items-center text-center"}`}>
+        <div className={`flex flex-col ${isMd ? "md:flex-1 lg:max-w-md xl:max-w-full" : "items-center text-center"}`}>
           <h1 className={`text-white tracking-widest font-main ${isMd ? "text-3xl lg:text-4xl xl:text-5xl" : "text-xl"}`}>
             Hi I<span className="gradient-text">&apos;</span>m
           </h1>
@@ -30,8 +30,8 @@ const About = () => {
         </div>
 
         {/* VS Code Hero block */}
-        <div className={`flex justify-center items-start ${isMd ? "md:flex-1" : "w-full max-w-[320px] mx-auto"}`}>
-          <div className={`w-full min-h-[320px] sm:min-h-[370px] md:min-h-[400px] lg:min-h-[440px] ${isMd ? "max-w-md lg:max-w-lg xl:max-w-xl" : "max-w-[320px]"}`}>
+        <div className={`flex justify-center items-start w-full ${isMd ? "md:flex-1" : "w-full  mx-auto"}`}>
+          <div className={`w-full min-h-[320px] sm:min-h-[370px] md:min-h-[400px] lg:min-h-[440px] ${isMd ? "max-w-[700px] lg:max-w-lg xl:max-w-[80%]" : "max-w-full"}`}>
             <CreativeHeroWrapper />
           </div>
         </div>

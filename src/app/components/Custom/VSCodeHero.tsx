@@ -527,7 +527,7 @@ export function VSCodeHero() {
         <div className="flex h-[calc(100%-32px)] sm:h-[calc(100%-36px)]">
 
           {/* Sidebar — desktop only */}
-          <div className="hidden md:flex flex-col w-40 lg:w-48 bg-[#010409] border-r border-[#21262d] shrink-0">
+          <div className="hidden md:flex flex-col w-40 lg:w-26 bg-[#010409] border-r border-[#21262d] shrink-0">
             <div className="px-3 py-2 text-[9px] text-[#8b949e]/60 uppercase tracking-[0.15em] font-semibold">Explorer</div>
             <div className="flex-1 overflow-hidden px-1">
               {FILE_TREE.map((item,i)=>(
